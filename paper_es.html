@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Auditoría de Calidad ISO/IEC 25010 y Modernización Ergonómica ISO 9241</title>
+<style>
+  @page {
+    size: letter;
+    margin: 0.70in 0.60in 0.70in 0.60in;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Times New Roman', Times, 'Nimbus Roman No9 L', serif;
+    font-size: 9.8pt;
+    line-height: 1.18;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    background-color: #FFFFFF;
+  }
+  
+  .header-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12pt;
+  }
+  
+  .paper-title {
+    font-size: 19pt;
+    font-weight: bold;
+    line-height: 1.16;
+    margin-bottom: 10pt;
+    color: #000000;
+  }
+  
+  .authors-table {
+    width: 100%;
+    margin: 0 auto 8pt auto;
+    border-collapse: collapse;
+  }
+  .authors-table td {
+    text-align: center;
+    vertical-align: top;
+    padding: 1pt 6pt;
+    font-size: 9pt;
+  }
+  .author-name {
+    font-weight: bold;
+    font-size: 9.5pt;
+    display: block;
+    margin-bottom: 1pt;
+  }
+  .author-affil {
+    font-style: italic;
+    font-size: 8pt;
+    color: #222222;
+    display: block;
+  }
+  .author-city {
+    font-size: 8pt;
+    color: #333333;
+    display: block;
+  }
+  .author-email {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7.5pt;
+    color: #111111;
+    display: block;
+    margin-top: 1pt;
+  }
+
+  .columns-container {
+    column-count: 2;
+    column-gap: 0.22in;
+    column-fill: auto;
+  }
+
+  .abstract-box {
+    margin-bottom: 8pt;
+  }
+  .abstract-title {
+    font-weight: bold;
+    font-style: italic;
+  }
+  .abstract-text {
+    font-size: 8.8pt;
+    font-weight: bold;
+    line-height: 1.20;
+  }
+  .keywords-text {
+    font-size: 8.8pt;
+    margin-top: 4pt;
+    margin-bottom: 8pt;
+  }
+  .keywords-title {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  h2.section-title {
+    font-size: 9.8pt;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.04em;
+    margin-top: 10pt;
+    margin-bottom: 4pt;
+    break-after: avoid;
+  }
+  
+  h3.subsection-title {
+    font-size: 9.8pt;
+    font-weight: normal;
+    font-style: italic;
+    text-align: left;
+    margin-top: 7pt;
+    margin-bottom: 3pt;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-indent: 12pt;
+  }
+  p.no-indent {
+    text-indent: 0;
+  }
+
+  .full-width {
+    column-span: all;
+    width: 100%;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    text-align: center;
+    break-inside: avoid;
+  }
+  .single-width {
+    width: 100%;
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: center;
+    break-inside: avoid;
+  }
+  
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 3pt auto;
+  }
+  figcaption {
+    font-size: 7.8pt;
+    line-height: 1.15;
+    text-align: justify;
+    color: #111111;
+    margin-top: 2pt;
+  }
+  figcaption .fig-num {
+    font-weight: normal;
+  }
+
+  .table-box {
+    margin: 6pt 0;
+    width: 100%;
+    break-inside: avoid;
+  }
+  .table-caption {
+    font-size: 7.8pt;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.03em;
+    margin-bottom: 3pt;
+  }
+  table.ieee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+    line-height: 1.15;
+    margin: 0 auto;
+  }
+  table.ieee-table th {
+    border-top: 1.1pt solid #000000;
+    border-bottom: 0.7pt solid #000000;
+    padding: 2.5pt 3pt;
+    font-weight: bold;
+    text-align: left;
+  }
+  table.ieee-table td {
+    padding: 2pt 3pt;
+    vertical-align: top;
+    text-align: left;
+  }
+  table.ieee-table tr.rule-bottom td {
+    border-bottom: 1.1pt solid #000000;
+  }
+  table.ieee-table tr.rule-mid td {
+    border-top: 0.4pt solid #CCCCCC;
+  }
+
+  .equation-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4pt 0;
+    padding: 0 8pt;
+    font-style: italic;
+  }
+  .equation-content {
+    margin: 0 auto;
+  }
+  .equation-num {
+    font-style: normal;
+  }
+
+  ol.references {
+    padding-left: 14pt;
+    margin-top: 3pt;
+    font-size: 7.8pt;
+    line-height: 1.16;
+  }
+  ol.references li {
+    margin-bottom: 3pt;
+    text-align: justify;
+  }
+
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8pt;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <div class="paper-title">
+    Auditoría de Calidad ISO/IEC 25010 y Modernización<br>
+    Ergonómica ISO 9241 de un Sistema Legado de Vigilancia<br>
+    Epidemiológica para Infecciones Respiratorias Agudas
+  </div>
+  
+  <table class="authors-table">
+    <tr>
+      <td style="width: 33%;">
+        <span class="author-name">Leonardo Ruben Arce Mayhua</span>
+        <span class="author-affil">Universidad Nacional de San Agustín</span>
+        <span class="author-city">Arequipa, Perú</span>
+        <span class="author-email">larcem@unsa.edu.pe</span>
+      </td>
+      <td style="width: 33%;">
+        <span class="author-name">Joel Isaias Condori Leon</span>
+        <span class="author-affil">Universidad Nacional de San Agustín</span>
+        <span class="author-city">Arequipa, Perú</span>
+        <span class="author-email">jcondorile@unsa.edu.pe</span>
+      </td>
+      <td style="width: 33%;">
+        <span class="author-name">Marco Antonio Marquez Herrera</span>
+        <span class="author-affil">Universidad Nacional de San Agustín</span>
+        <span class="author-city">Arequipa, Perú</span>
+        <span class="author-email">mmarquezhe@unsa.edu.pe</span>
+      </td>
+    </tr>
+  </table>
+  
+  <table class="authors-table" style="width: 66%;">
+    <tr>
+      <td style="width: 50%;">
+        <span class="author-name">Rafael Diego Nina Calizaya</span>
+        <span class="author-affil">Universidad Nacional de San Agustín</span>
+        <span class="author-city">Arequipa, Perú</span>
+        <span class="author-email">rninacal@unsa.edu.pe</span>
+      </td>
+      <td style="width: 50%;">
+        <span class="author-name">Jeremy Joshua Perez Huamani</span>
+        <span class="author-affil">Universidad Nacional de San Agustín</span>
+        <span class="author-city">Arequipa, Perú</span>
+        <span class="author-email">jperezhua@unsa.edu.pe</span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="columns-container">
+
+  <div class="abstract-box">
+    <span class="abstract-title">Resumen</span>—<span class="abstract-text">Este artículo aplica ingeniería inversa estática y auditoría de calidad de software a <i>ISPySA-Pneumonia</i>, un flujo analítico de código abierto de 6,839 líneas en Python para la vigilancia epidemiológica de Infecciones Respiratorias Agudas (IRA) y neumonía en el Perú (2000–2023). Nuestra investigación aborda tres objetivos fundamentales: (i) recuperar la topología arquitectónica por capas y los contratos de datos a partir únicamente de los artefactos del código fuente; (ii) identificar, clasificar bajo el estándar ISO/IEC 25010 y subsanar los defectos estructurales con los que la publicación original fue liberada; y (iii) diseñar, implementar y verificar una plataforma interactiva de monitoreo clínico cuya ergonomía visual y arquitectura de interacción se adhieren estrictamente a las normas ISO 9241-11, ISO 9241-210, ISO 9241-110 e ISO 9241-12. La auditoría de ingeniería inversa reveló tres defectos críticos en los contratos de datos: dos rutas de archivos truncadas que causaban el consumo silencioso de datos poblacionales desactualizados, y una incompatibilidad de empaquetado de entorno que inhabilita los modelos LSTM legados. Tras la remediación, el flujo de preparación de datos fue reejecutado sobre 2,143,985 registros distritales semanales, replicando fielmente las dinámicas epidemiológicas publicadas. Para desacoplar la capa de presentación de la estructura de archivos legada, se diseñó una capa de servicios anticorrupción (<code>EpidemiologyDataService</code> y <code>EpidemiologyModelService</code>). La plataforma resultante, desarrollada en Streamlit y estilizada mediante Tokens de Diseño normalizados y primitivas de UI accesibles, expone cinco módulos de vigilancia clínica con cero emojis informales y codificación visual redundante conforme a WCAG AAA. La integridad operacional se verificó mediante una suite de pruebas automatizadas que evalúa aserciones unitarias, de integración y de invariantes epidemiológicas de dominio, alcanzando una tasa de aprobación del 100% en 0.053 s.</span>
+    
+    <div class="keywords-text">
+      <span class="keywords-title">Palabras clave</span>—ingeniería inversa, vigilancia epidemiológica, ISO 9241, ISO/IEC 25010, Streamlit, calidad de software, capa anticorrupción, Python, IRA, neumonía, Perú
+    </div>
+  </div>
+
+  <h2 class="section-title">I. Introducción</h2>
+  <p>Los sistemas de información en salud pública enfrentan una persistente brecha estructural entre el rigor analítico computacional y los requisitos operacionales de los tomadores de decisiones clínicas. Los flujos analíticos basados en <i>scripts</i> aislados—secuencias de archivos procedimentales donde cada rutina ingiere datos tabulares, ejecuta transformaciones y emite archivos planos o gráficos estáticos intermedios—están ampliamente extendidos en grupos de investigación académica y direcciones regionales de salud con recursos de ingeniería de software limitados [1]. Aunque reproducibles a nivel computacional, estos flujos procedimentales exhiben severas deficiencias de mantenibilidad y usabilidad: las conclusiones analíticas quedan confinadas dentro de árboles de directorios inconexos repletos de figuras PNG y tablas CSV que el epidemiólogo debe localizar, correlacionar e interpretar manualmente, sin capacidades de consulta dinámica.</p>
+  
+  <p>En el Perú, las Infecciones Respiratorias Agudas (IRA) y la neumonía constituyen la principal causa de morbimortalidad evitable en cohortes demográficas vulnerables: niños menores de cinco años (&lt;5) y adultos mayores de sesenta años a más (60+) [2]. Los incrementos estacionales están fuertemente condicionados por factores bioclimáticos, manifestando profundas disparidades territoriales entre las zonas altoandinas sujetas a intensas heladas y los departamentos amazónicos caracterizados por humedad persistente y aislamiento geográfico. La detección oportuna de brotes epidemiológicos anómalos es indispensable para la asignación racional de camas hospitalarias, oxígeno medicinal y personal médico entre las Direcciones Regionales de Salud (DIRESA). Cuando las herramientas analíticas no logran exponer paneles interactivos y accesibles, las autoridades sanitarias se ven forzadas a depender de boletines trimestrales extemporáneos o del procesamiento manual en hojas de cálculo.</p>
+  
+  <p>El repositorio de código abierto <i>ISPySA-Pneumonia</i> [3] constituye un caso representativo de esta situación. Dicho sistema provee un análisis histórico exhaustivo sobre incidencia, estacionalidad, jerarquización territorial y modelamiento predictivo de las IRA en el Perú durante una ventana de 24 años (2000–2023). No obstante, su utilidad operativa resulta comprometida por una salida dispersa en decenas de gráficos estáticos. Más crítico aún, nuestra auditoría de ingeniería inversa estática descubrió que la ausencia de contratos de datos explícitos entre rutinas generó defectos de rutas de archivos que la publicación original distribuyó sin detectar, provocando que los <i>scripts</i> subsiguientes consumieran datos desactualizados en silencio.</p>
+
+  <p>Para superar estas limitaciones, este artículo documenta un proceso riguroso de ingeniería de calidad de software:</p>
+  <p class="no-indent">1) Recuperación de la topología arquitectónica y de los contratos de datos productor/consumidor del flujo legado mediante lectura estática y sistemática del código fuente;</p>
+  <p class="no-indent">2) Identificación, aislamiento y subsanación de los defectos en contratos de datos e incompatibilidades de ejecución, clasificándolos bajo el modelo de calidad ISO/IEC 25010 [4];</p>
+  <p class="no-indent">3) Reejecución de las etapas corregidas de preparación de datos y modelamiento sobre 2.14 millones de observaciones semanales, validando la consistencia epidemiológica con los resultados publicados;</p>
+  <p class="no-indent">4) Diseño y construcción de una capa de servicios anticorrupción (<code>EpidemiologyDataService</code> y <code>EpidemiologyModelService</code>) para aislar el modelo de dominio de las anomalías de persistencia legadas [5];</p>
+  <p class="no-indent">5) Modernización de la interfaz de vigilancia clínica bajo la familia de normas ergonómicas ISO 9241 [6]–[9], aplicando Tokens de Diseño normalizados, paletas institucionales sobrias, codificación visual redundante y eliminación absoluta de emojis informales; y</p>
+  <p class="no-indent">6) Verificación de la confiabilidad del sistema mediante una suite de pruebas automatizadas que articula aserciones de software con invariantes de dominio epidemiológico.</p>
+
+  <h2 class="section-title">II. Trabajos Relacionados y Normas</h2>
+  
+  <h3 class="subsection-title">A. Ingeniería Inversa y Modernización de Código Legado</h3>
+  <p>Chikofsky y Cross [10] definen la ingeniería inversa como el análisis metódico de un sistema para identificar sus componentes constitutivos e interrelaciones, abstrayendo representaciones de mayor nivel de diseño. En flujos procedimentales de ciencia de datos que carecen de abstracciones orientadas a objetos, la entidad estructural primordial a recuperar es el <i>grafo de dependencias productor/consumidor</i>: cada rutina de cálculo opera como un nodo, y cada archivo tabular persistido actúa como un contrato de datos dirigido.</p>
+  
+  <p>Feathers [1] destaca que los defectos más perniciosos en el software legado no residen en la sintaxis interna de un módulo, sino en la brecha semántica desatendida entre lo que una rutina productora escribe y lo que una rutina consumidora espera. Evans [5] formaliza el patrón de <i>capa anticorrupción</i> como un límite de traducción explícito que protege un modelo de dominio emergente frente a subsistemas externos anómalos. En este trabajo, aplicamos dicho patrón para desacoplar nuestra capa de presentación frente a las rutas e inconsistencias del repositorio original.</p>
+
+  <h3 class="subsection-title">B. Calidad del Producto de Software: ISO/IEC 25010</h3>
+  <p>El estándar internacional ISO/IEC 25010 [4] establece un modelo formal de calidad de software. Nuestra auditoría examina prioritariamente <b>Mantenibilidad</b> (evaluando la <i>modularidad</i> y la <i>analizabilidad</i>) y <b>Usabilidad</b> (evaluando el <i>reconocimiento de idoneidad</i>, la <i>capacidad de aprendizaje</i> y la <i>operabilidad</i> en contextos clínicos).</p>
+
+  <h3 class="subsection-title">C. La Familia Ergonómica ISO 9241</h3>
+  <p>La ergonomía visual y la ingeniería de interacción se fundamentan en cuatro partes esenciales de la norma ISO 9241: ISO 9241-11 [6] (eficacia, eficiencia, satisfacción); ISO 9241-210 [7] (diseño centrado en el ser humano); ISO 9241-110 [8] (siete principios de diálogo interactivo); e ISO 9241-12 [9] (organización visual y codificación redundante). La Tabla I sintetiza estos fundamentos teóricos y normativos.</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA I<br>Normas y Fundamentos Teóricos Utilizados</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Fuente</th>
+          <th style="width: 22%;">Tipo</th>
+          <th>Rol en esta Investigación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ISO 9241-11</td><td>Estándar</td><td>Dimensiones de usabilidad (eficacia, eficiencia)</td></tr>
+        <tr class="rule-mid"><td>ISO 9241-210</td><td>Estándar</td><td>Diseño centrado en el humano y arquetipos</td></tr>
+        <tr class="rule-mid"><td>ISO 9241-110</td><td>Estándar</td><td>Siete principios de diálogo &rarr; lista heurística</td></tr>
+        <tr class="rule-mid"><td>ISO 9241-12</td><td>Estándar</td><td>Organización visual y codificación redundante</td></tr>
+        <tr class="rule-mid"><td>ISO/IEC 25010</td><td>Estándar</td><td>Clasificación de defectos (modularidad, analizabilidad)</td></tr>
+        <tr class="rule-mid"><td>Nielsen [11]</td><td>Libro</td><td>Método de inspección heurística y costo de clics</td></tr>
+        <tr class="rule-mid"><td>Cleveland [12]</td><td>Método</td><td>Descomposición estacional STL por Loess</td></tr>
+        <tr class="rule-mid"><td>Chen [13]</td><td>Método</td><td>Potenciación de árboles de gradiente (XGBoost)</td></tr>
+        <tr class="rule-mid"><td>Feathers [1]</td><td>Libro</td><td>Análisis de brechas en límites de software legado</td></tr>
+        <tr class="rule-mid rule-bottom"><td>Evans [5]</td><td>Libro</td><td>Fachada de dominio con capa anticorrupción</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">III. Materiales y Método</h2>
+  
+  <h3 class="subsection-title">A. Estructura del Repositorio Legado</h3>
+  <p>El repositorio evaluado, <i>ISPySA-Pneumonia</i> [3], reúne 6,839 líneas de código ejecutable en Python organizadas en 14 <i>scripts</i> dentro de tres módulos funcionales: <code>src/data_preparation/</code> (3 rutinas), <code>src/eda/</code> (5 rutinas) y <code>src/modeling/</code> (14 rutinas).</p>
+
+  <h3 class="subsection-title">B. Conjunto de Datos Epidemiológicos</h3>
+  <p>El registro epidemiológico central, <code>data/raw/iras_updated.csv</code>, contiene 2,143,985 observaciones semanales recolectadas en los 1,874 distritos del Perú entre 2000 y 2023 por CDC-MINSA. Las variables registradas incluyen conteos de casos de IRA no neumonía, neumonías graves, hospitalizaciones y defunciones, estratificados en dos cohortes: niños menores de 5 años (&lt;5) y adultos mayores de 60 años a más (60+). Las tasas anuales siguen la formulación oficial del MINSA:</p>
+
+  <div class="equation-box">
+    <div class="equation-content">
+      Tasa de Incidencia = ( Casos Notificados / Población de la Cohorte ) &times; 100,000
+    </div>
+    <div class="equation-num">(1)</div>
+  </div>
+
+  <h3 class="subsection-title">C. Protocolo de Ingeniería Inversa Estática</h3>
+  <p>Cada rutina fue auditada registrando rutas de archivos de entrada, esquemas tabulares esperados, artefactos de salida generados, transformaciones de columnas e inconsistencias léxicas en nombres de archivo.</p>
+
+  <h3 class="subsection-title">D. Entorno Tecnológico Moderno</h3>
+  <p>La Tabla II enumera el ecosistema tecnológico utilizado en la modernización. La plataforma clínica fue desarrollada en Python mediante Streamlit, gestionada con <code>uv</code>, y respaldada por servicios de dominio desacoplados.</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA II<br>Ecosistema Tecnológico y Clasificación de Componentes</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 35%;">Tecnología / Librería</th>
+          <th style="width: 45%;">Rol Funcional</th>
+          <th>Clase</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Python 3.12 / 3.13</td><td>Entorno de ejecución computacional</td><td>Compartido</td></tr>
+        <tr class="rule-mid"><td>uv (0.12.7)</td><td>Administrador ultrarrápido de entornos</td><td>Nuevo</td></tr>
+        <tr class="rule-mid"><td>pandas / NumPy</td><td>Procesamiento de estructuras tabulares</td><td>Legado</td></tr>
+        <tr class="rule-mid"><td>matplotlib / seaborn</td><td>Generación de figuras estadísticas</td><td>Legado</td></tr>
+        <tr class="rule-mid"><td>statsmodels (STL)</td><td>Descomposición estacional Loess</td><td>Legado</td></tr>
+        <tr class="rule-mid"><td>scikit-learn / XGBoost</td><td>Ensambles de árboles y regresión</td><td>Legado</td></tr>
+        <tr class="rule-mid"><td>Streamlit (1.32+)</td><td>Plataforma interactiva de vigilancia</td><td>Nuevo</td></tr>
+        <tr class="rule-mid"><td>Capa Anticorrupción</td><td>Aislamiento de servicios de dominio</td><td>Nuevo</td></tr>
+        <tr class="rule-mid"><td>unittest (stdlib)</td><td>Suite de verificación automatizada</td><td>Nuevo</td></tr>
+        <tr class="rule-mid rule-bottom"><td>Windows Batch (CRLF)</td><td>Lanzador de producción autónomo</td><td>Nuevo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="full-width">
+    <figure>
+      <img src="fig_architecture.png" alt="Diagrama de Arquitectura">
+      <figcaption><span class="fig-num">Fig. 1.</span> Topología arquitectónica por capas recuperada del flujo legado ISPySA-Pneumonia, ilustrando la capa de servicios anticorrupción y la capa de presentación modernizada bajo las normas ISO/IEC 25010 e ISO 9241.</figcaption>
+    </figure>
+  </div>
+
+  <h2 class="section-title">IV. Resultados de la Ingeniería Inversa</h2>
+  
+  <h3 class="subsection-title">A. Topología Arquitectónica Recuperada</h3>
+  <p>La ingeniería inversa estática reveló que la lógica del repositorio legado responde a un flujo secuencial estructurado en cinco capas conceptuales, mapeando desde la Capa 0 (Almacenamiento Bruto) hasta la Capa 4 (Presentación Modernizada), como ilustra la Fig. 1.</p>
+
+  <h3 class="subsection-title">B. Defectos de Contrato de Datos Identificados</h3>
+  <p>La auditoría detectó tres defectos estructurales que la publicación original incluyó sin advertir, resumidos en la Tabla III. Bajo la norma ISO/IEC 25010, los dos primeros defectos constituyen severas no conformidades de modularidad y analizabilidad.</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA III<br>Defectos de Contrato de Datos Diagnosticados</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Rutina</th>
+          <th style="width: 22%;">Tipo de Defecto</th>
+          <th>Impacto Operacional y Subsanación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Incidence.py</code></td>
+          <td>Discrepancia de ruta</td>
+          <td>Escribía su salida en <code>outputs/tables/</code> en lugar de <code>data/processed/</code>; la rutina consumidora <code>ranking_updated.py</code> abortaba de inmediato.<br><i>Corrección</i>: se redirigió la ruta hacia <code>data/processed/</code>.</td>
+        </tr>
+        <tr class="rule-mid">
+          <td><code>seasonality_analysis.py</code>,<br><code>Regional_Analysis.py</code></td>
+          <td>Error tipográfico</td>
+          <td>Rutinas consumidoras cargaban con guión <code>departmental-population.csv</code>; la generadora grababa con guión bajo. Ambas leían datos congelados.<br><i>Corrección</i>: unificación de rutas.</td>
+        </tr>
+        <tr class="rule-mid rule-bottom">
+          <td><code>src/modeling/</code></td>
+          <td>Dependencia de entorno</td>
+          <td>TensorFlow 2.13 no cuenta con binarios oficiales para Python 3.12+ en Windows; los modelos LSTM colapsan.<br><i>Corrección</i>: priorización de XGBoost/RF.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">C. Reejecución y Validación Epidemiológica</h3>
+  <p>Tras subsanar los defectos, la cadena de preparación de datos se reejecutó completamente sobre los 2,143,985 registros originales. Las tasas nacionales reconstruidas (Tabla IV) y las métricas de rendimiento predictivo (Tabla V) corroboran con precisión los hallazgos reportados por Danala et al. [3]. La incidencia pediátrica exhibió un descenso sostenido del 69.4% entre 2000 y 2019, seguido de un rebote post-pandemia a partir de 2020. En contraste, la morbilidad en adultos mayores mantuvo un crecimiento secular continuo. A nivel territorial, los departamentos selváticos de Loreto y Ucayali registraron las mayores tasas en el 91.7% de los 24 años examinados.</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA IV<br>Tasas Reejecutadas de Incidencia Acumulada Nacional de IRA (por 100,000 hab.)</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 40%; text-align: center;">Año Epidemiológico</th>
+          <th style="width: 30%; text-align: right;">Niños &lt;5</th>
+          <th style="width: 30%; text-align: right;">Adultos 60+</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="text-align: center;">2000</td><td style="text-align: right;">308.7</td><td style="text-align: right;">0.0*</td></tr>
+        <tr class="rule-mid"><td style="text-align: center;">2005</td><td style="text-align: right;">230.1</td><td style="text-align: right;">0.0*</td></tr>
+        <tr class="rule-mid"><td style="text-align: center;">2010</td><td style="text-align: right;">126.3</td><td style="text-align: right;">30.9</td></tr>
+        <tr class="rule-mid"><td style="text-align: center;">2015</td><td style="text-align: right;">96.1</td><td style="text-align: right;">50.1</td></tr>
+        <tr class="rule-mid"><td style="text-align: center;">2019</td><td style="text-align: right;">79.9</td><td style="text-align: right;">65.2</td></tr>
+        <tr class="rule-mid rule-bottom"><td style="text-align: center;">2023</td><td style="text-align: right;">94.4</td><td style="text-align: right;">92.4</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size: 7.2pt; margin-top: 2pt;">*La vigilancia de adultos mayores de 60 años inició formalmente en 2006.</div>
+  </div>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA V<br>Tabla de Rendimiento de Modelos Predictivos (Ventana Móvil de 5 Años)</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Cohorte</th>
+          <th style="width: 40%;">Arquitectura de Modelo</th>
+          <th style="text-align: right;">MAE</th>
+          <th style="text-align: right;">RMSE</th>
+          <th style="text-align: right;">R<sup>2</sup></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Niños &lt;5</td><td>XGBoost Regressor</td><td style="text-align: right;">0.184</td><td style="text-align: right;">0.271</td><td style="text-align: right;">0.935</td></tr>
+        <tr class="rule-mid"><td>Niños &lt;5</td><td>Random Forest</td><td style="text-align: right;">0.210</td><td style="text-align: right;">0.296</td><td style="text-align: right;">0.922</td></tr>
+        <tr class="rule-mid"><td>Adultos 60+</td><td>XGBoost Regressor</td><td style="text-align: right;">0.097</td><td style="text-align: right;">0.168</td><td style="text-align: right;">0.890</td></tr>
+        <tr class="rule-mid rule-bottom"><td>Adultos 60+</td><td>Random Forest</td><td style="text-align: right;">0.107</td><td style="text-align: right;">0.183</td><td style="text-align: right;">0.869</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_classdiagram.png" alt="Diagrama de Clases UML">
+      <figcaption><span class="fig-num">Fig. 2.</span> Diagrama de clases UML de la arquitectura modernizada, detallando los servicios anticorrupción (<code>EpidemiologyDataService</code> y <code>EpidemiologyModelService</code>) y la fachada de presentación.</figcaption>
+    </figure>
+  </div>
+
+  <h2 class="section-title">V. Arquitectura e Implementación de la Interfaz</h2>
+  
+  <h3 class="subsection-title">A. Arquitectura de Servicios Anticorrupción</h3>
+  <p>Acoplar de forma directa una interfaz web a archivos CSV heterogéneos introduce una fragilidad insostenible. Con el propósito de aislar la presentación, se construyó una capa de servicios anticorrupción en <code>src/services/</code>, ilustrada en la Fig. 2: <code>EpidemiologyDataService</code> (encapsulando rutas físicas, validación de esquemas y caché en memoria) y <code>EpidemiologyModelService</code> (administrando modelos y bandas de confianza al 95%).</p>
+
+  <h3 class="subsection-title">B. Ergonomía Visual y Tokens de Diseño</h3>
+  <p>En estricto cumplimiento de las normas ISO 9241-110 e ISO 9241-12, la interfaz rechaza plantillas recreativas y adopta una arquitectura de Tokens de Diseño: una rejilla espacial de 8 píxeles; paleta institucional sobria (azul marino <code>#0F2942</code>, pizarra <code>#1E293B</code>); erradicación total de emojis; y codificación redundante de estados críticos (tinte cromático, rótulo formal y símbolos &bull;, &blacktriangle;, &blacksquare;, &blacklozenge;).</p>
+
+  <h3 class="subsection-title">C. Módulos de Vigilancia Clínica</h3>
+  <p>La información epidemiológica se estructura en cinco vistas especializadas:</p>
+
+  <p><b>1) Tablero General de Mando:</b> Ilustrado en la Fig. 3, confiere conocimiento situacional instantáneo mediante cuatro tarjetas KPI principales, una serie histórica de 24 años frente a un canal de alerta endémica y el ranking departamental.</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_dashboard.png" alt="Tablero General">
+      <figcaption><span class="fig-num">Fig. 3.</span> Vista del Tablero General: tarjetas KPI ejecutivas, serie temporal histórica y clasificación de departamentos de mayor carga.</figcaption>
+    </figure>
+  </div>
+
+  <p><b>2) Estratificación de Riesgo Territorial:</b> Presentado en la Fig. 4, permite la comparación geográfica mediante una matriz ordenable que clasifica los 25 departamentos en cuatro niveles de riesgo formalizados bajo ISO 9241-12.</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_territorial.png" alt="Estratificación Territorial">
+      <figcaption><span class="fig-num">Fig. 4.</span> Vista de Estratificación Territorial: incidencia comparativa pediátrica frente a adultos mayores y clasificación redundante de riesgo ISO 9241-12.</figcaption>
+    </figure>
+  </div>
+
+  <p><b>3) Monitor de Severidad Clínica:</b> Detallado en la Fig. 5, contrasta las Tasas de Hospitalización (HR) contra las de Letalidad (CFR), demostrando que la cohorte adulta mayor presenta una letalidad cuatro veces superior a la infantil.</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_severity.png" alt="Severidad Clínica">
+      <figcaption><span class="fig-num">Fig. 5.</span> Vista de Severidad Clínica: evolución de la Tasa de Hospitalización (HR) frente a la Tasa de Letalidad (CFR) en el período 2006–2023.</figcaption>
+    </figure>
+  </div>
+
+  <p><b>4) Modelamiento Predictivo y Proyección a 52 Semanas:</b> Exhibido en la Fig. 6, proyecta la demanda de casos 52 semanas hacia el futuro empleando XGBoost Regressor (R<sup>2</sup>=0.935, MAE=0.184) con intervalos de confianza al 95%.</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_forecast.png" alt="Proyección Predictiva">
+      <figcaption><span class="fig-num">Fig. 6.</span> Vista de Proyección Predictiva: proyección a 52 semanas con XGBoost, intervalos empíricos de confianza al 95% y métricas de validación cruzada.</figcaption>
+    </figure>
+  </div>
+
+  <p><b>5) Galería Diagnóstica de Análisis Exploratorio:</b> Mostrado en la Fig. 7, resuelve la pérdida de visibilidad al disponer de un catálogo web indexado con los 14 gráficos diagnósticos legados (descomposiciones STL, importancia de variables, residuales).</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="fig_gallery.png" alt="Galería Diagnóstica">
+      <figcaption><span class="fig-num">Fig. 7.</span> Galería Diagnóstica Legada: catálogo interactivo indexado que provee acceso instantáneo a descomposiciones estacionales y residuales.</figcaption>
+    </figure>
+  </div>
+
+  <h3 class="subsection-title">D. Lanzador Autónomo para Entornos Windows</h3>
+  <p>Para garantizar una ejecución inmediata en estaciones de trabajo hospitalarias sin privilegios administrativos, se desarrolló <code>ejecutar_aplicativo.bat</code>. El script emplea codificación ASCII pura de 7 bits y saltos de línea CRLF, detecta Python o <code>uv</code>, levanta el servidor Streamlit en el puerto 8501 y despliega el navegador predeterminado.</p>
+
+  <h2 class="section-title">VI. Pruebas Automatizadas</h2>
+  <p>La confiabilidad del sistema y la adhesión a los contratos de datos se verifican mediante una suite automatizada implementada en <code>tests/test_services.py</code> sobre <code>unittest</code>. Como detalla la Tabla VI, abarca tres dimensiones operacionales críticas. De manera destacada, las pruebas de Invariantes de Dominio validan hechos epidemiológicos incontrovertibles (descenso secular en niños, mayor letalidad en ancianos, acotamiento físico de tasas y liderazgo de Loreto y Ucayali). Las 6 pruebas superan la ejecución en 0.053 s (Fig. 8).</p>
+
+  <div class="single-width">
+    <figure>
+      <img src="test_passed.png" alt="Pruebas Aprobadas">
+      <figcaption><span class="fig-num">Fig. 8.</span> Ejecución de la suite de pruebas automatizadas: certificación del 100% de aserciones unitarias y de invariantes de dominio en 0.053 s.</figcaption>
+    </figure>
+  </div>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA VI<br>Estructura de la Suite de Pruebas Automatizadas</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 32%;">Grupo de Verificación</th>
+          <th style="width: 10%; text-align: center;">N</th>
+          <th>Alcance de Verificación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Integridad de Servicios</td>
+          <td style="text-align: center;">2</td>
+          <td>Verifica inicialización libre de excepciones, eficiencia de caché singleton y normalización de esquemas.</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Contratos Territoriales</td>
+          <td style="text-align: center;">2</td>
+          <td>Valida la integridad de datos para los 25 departamentos y la coherencia del horizonte predictivo de 52 semanas.</td>
+        </tr>
+        <tr class="rule-mid rule-bottom">
+          <td>Invariantes Epidemiológicas</td>
+          <td style="text-align: center;">2</td>
+          <td>Asegura consistencia clínica: tasas no negativas, letalidad acotada (0% &le; CFR &le; 20%) y relación de vulnerabilidad etaria.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">VII. Evaluación Heurística</h2>
+  
+  <h3 class="subsection-title">A. Inspección de Principios de Diálogo ISO 9241-110</h3>
+  <p>La Tabla VII expone la evaluación heurística de la plataforma frente a los siete principios de diálogo de ISO 9241-110 y directrices de presentación de ISO 9241-12, aplicando la metodología de inspección experta de Nielsen [11].</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA VII<br>Lista de Verificación Heurística ISO 9241-110 / ISO 9241-12</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 32%;">Principio</th>
+          <th>Mecanismo Implementado</th>
+          <th style="width: 15%; text-align: center;">Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Adecuación a tarea (110)</td>
+          <td>Vistas diseñadas específicamente para decisiones clínicas. Filtrado dinámico instantáneo por cohorte y región.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Autodescripción (110)</td>
+          <td>Unidades epidemiológicas explícitas en tarjetas (por 100k hab., %). Subtítulos que indican la fuente y año de los datos.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Conformidad (110)</td>
+          <td>Navegación estándar mediante pestañas superiores; umbrales epidemiológicos normados por el MINSA.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Aprendizaje (110)</td>
+          <td>Estructura visual consistente: barra de control &rarr; KPIs &rarr; curvas analíticas &rarr; tablas detalladas.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Controlabilidad (110)</td>
+          <td>Alternancia inmediata entre cohortes infantil y adulta. Reajuste fluido a la vista consolidada nacional.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Tolerancia a fallos (110)</td>
+          <td>Respaldo ante registros departamentales faltantes; uso de promedios móviles para amortiguar ruido semanal.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid">
+          <td>Codificación redundante (12)</td>
+          <td>Los niveles de riesgo se indican simultáneamente con tinte cromático, texto formal y símbolos (&bull;, &blacktriangle;, &blacksquare;, &blacklozenge;).</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+        <tr class="rule-mid rule-bottom">
+          <td>Legibilidad visual (12)</td>
+          <td>Contraste tipográfico superior a 12:1 sobre fondos limpios; eliminación integral de saturación ornamental.</td>
+          <td style="text-align: center;">Cumple</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">B. Análisis de Costo de Interacción</h3>
+  <p>La Tabla VIII cuantifica el costo de interacción para tareas comunes de monitoreo. En todos los flujos de trabajo, el analista adquiere información de decisión con dos o menos acciones de usuario, cumpliendo los estándares de eficiencia operativa en salud pública.</p>
+
+  <div class="table-box">
+    <div class="table-caption">TABLA VIII<br>Tareas de Vigilancia y Costo de Interacción</div>
+    <table class="ieee-table">
+      <thead>
+        <tr>
+          <th style="width: 55%;">Tarea Operativa de Vigilancia</th>
+          <th style="width: 30%;">Módulo Destino</th>
+          <th style="text-align: center;">Clics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Evaluar situación nacional actual</td><td>Tablero General</td><td style="text-align: center;">0</td></tr>
+        <tr class="rule-mid"><td>Examinar trayectoria histórica de 24 años</td><td>Tablero General</td><td style="text-align: center;">1</td></tr>
+        <tr class="rule-mid"><td>Identificar departamentos de mayor carga</td><td>Territorial</td><td style="text-align: center;">1</td></tr>
+        <tr class="rule-mid"><td>Analizar severidad clínica (HR vs CFR)</td><td>Severidad</td><td style="text-align: center;">1</td></tr>
+        <tr class="rule-mid"><td>Consultar proyección predictiva a 52 semanas</td><td>Predicción</td><td style="text-align: center;">1</td></tr>
+        <tr class="rule-mid"><td>Inspeccionar gráficos diagnósticos legados</td><td>Galería EDA</td><td style="text-align: center;">1</td></tr>
+        <tr class="rule-mid rule-bottom"><td>Auditar documentación de calidad ISO</td><td>Módulo ISO</td><td style="text-align: center;">1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">VIII. Discusión</h2>
+  <p>Los resultados confirman que la brecha existente entre rutinas científicas aisladas y herramientas operativas de decisión es de naturaleza arquitectónica y ergonómica, y no puramente matemática. Los algoritmos de <i>ISPySA-Pneumonia</i> poseían solidez estadística, pero su efectividad se veía socavada por tuberías de datos frágiles y falta de interfaces adecuadas.</p>
+
+  <p><b>Sobre la Capa de Servicios Anticorrupción:</b> Implementar <code>EpidemiologyDataService</code> y <code>EpidemiologyModelService</code> resultó determinante para aislar la interfaz web de anomalías en los archivos base. Al encapsular la sanitización y gestión de caché en servicios de dominio dedicados, la interfaz interactúa exclusivamente con contratos tipados, maximizando la <i>modularidad</i> bajo ISO/IEC 25010.</p>
+
+  <p><b>Sobre la Verificación de Invariantes de Dominio:</b> Las pruebas unitarias convencionales verifican tipos y retornos, pero son incapaces de advertir cálculos epidemiológicos espurios. Al introducir aserciones de invariantes de dominio (tales como la mayor letalidad en ancianos frente a niños y la reducción secular de la morbilidad pediátrica), la automatización salvaguarda la veracidad médica frente a corrupciones sutiles de datos.</p>
+
+  <p><b>Tensión Ergonómica: Convención versus Accesibilidad:</b> El código semafórico (verde, ámbar, rojo) se encuentra profundamente arraigado en la práctica médica. Sin embargo, la norma ISO 9241-12 proscribe depender únicamente del color debido a las alteraciones en la visión cromática. Resolvimos esta tensión adoptando codificación redundante multicanal, complementando los colores con rótulos semánticos y marcadores geométricos diferenciados.</p>
+
+  <p><b>Amenazas a la Validez y Limitaciones:</b> En primer término, la evaluación heurística fue ejecutada por evaluadores de ingeniería de software; la realización de pruebas de campo con médicos y epidemiólogos del MINSA constituye la siguiente etapa indispensable. En segundo lugar, los modelos LSTM no pudieron ser reejecutados en Python 3.12+ debido a restricciones de empaquetado de TensorFlow en Windows, si bien los modelos XGBoost demostraron una precisión superior. Por último, la resolución espacial actual está agregada a nivel departamental; extender el monitoreo a resolución provincial y distrital representa un trabajo continuo.</p>
+
+  <h2 class="section-title">IX. Conclusiones y Trabajo Futuro</h2>
+  <p>Esta investigación demostró que la aplicación sistemática de ingeniería inversa estática, auditoría de calidad ISO/IEC 25010 y modernización ergonómica ISO 9241 puede transformar un flujo analítico científico disperso y quebradizo en una plataforma clínica robusta para la vigilancia en salud pública. Se desarrolló una capa de servicios anticorrupción y una interfaz web moderna, operacionalizando 6,839 líneas de análisis legados sobre 2.14 millones de registros epidemiológicos sin comprometer la precisión de los modelos matemáticos.</p>
+
+  <p>Las cuatro conclusiones esenciales de este estudio son:</p>
+  <p class="no-indent">1) <i>La ingeniería inversa es una práctica activa de aseguramiento de calidad</i>: el rastreo estático reveló defectos ocultos de rutas que pasaron inadvertidos durante años;</p>
+  <p class="no-indent">2) <i>Las capas anticorrupción blindan la evolución arquitectónica</i>: modularizar el acceso a datos mediante servicios protege el desarrollo de interfaces modernas frente a esquemas inestables;</p>
+  <p class="no-indent">3) <i>La norma ISO 9241 aporta restricciones operativas constructivas</i>: los principios ergonómicos guiaron la diagramación visual, garantizando alta legibilidad, codificación redundante y bajo costo de clics;</p>
+  <p class="no-indent">4) <i>Las pruebas de invariantes de dominio unen la ingeniería con la salud pública</i>: validar realidades médicas dentro de las pruebas protege la integridad del sistema contra errores silenciosos de procesamiento.</p>
+
+  <p>El trabajo futuro se enfocará en: evaluar la usabilidad en campo con personal del MINSA bajo ISO 9241-210, descender la resolución analítica al plano distrital e integrar el flujo de datos directamente con los servicios web del CDC-MINSA.</p>
+
+  <h2 class="section-title" style="text-align: left; font-style: italic;">Agradecimientos</h2>
+  <p class="no-indent">Los autores expresan su agradecimiento a Danala, Thummalapally y Jangoan por poner a disposición pública el repositorio <i>ISPySA-Pneumonia</i> y sus conjuntos de datos asociados bajo licencia de código abierto.</p>
+
+  <h2 class="section-title">Referencias</h2>
+  <ol class="references">
+    <li>M. C. Feathers, <i>Working Effectively with Legacy Code</i>. Upper Saddle River, NJ, EE. UU.: Prentice Hall, 2004.</li>
+    <li>Organización Panamericana de la Salud, <i>Módulos de Principios de Epidemiología para el Control de Enfermedades, Módulo 4: Vigilancia en Salud Pública</i>, 2da ed. Washington, DC, EE. UU.: OPS, 2011.</li>
+    <li>G. Danala, A. R. Thummalapally y L. S. Jangoan, &ldquo;ISPySA-Pneumonia: Healthcare analytics -- time series analysis of IRA for public health monitoring in Peru,&rdquo; <i>Repositorio GitHub</i>, 2024.</li>
+    <li>Organización Internacional de Normalización, &ldquo;ISO/IEC 25010:2011 &mdash; Ingeniería de sistemas y software &mdash; SQuaRE &mdash; Modelos de calidad del sistema y del software,&rdquo; ISO/IEC, Inf. Téc., 2011.</li>
+    <li>E. Evans, <i>Domain-Driven Design: Tackling Complexity in the Heart of Software</i>. Boston, MA, EE. UU.: Addison-Wesley, 2003.</li>
+    <li>Organización Internacional de Normalización, &ldquo;ISO 9241-11:2018 &mdash; Ergonomía de la interacción persona-sistema &mdash; Parte 11: Usabilidad: Definiciones y conceptos,&rdquo; ISO, Inf. Téc., 2018.</li>
+    <li>Organización Internacional de Normalización, &ldquo;ISO 9241-210:2019 &mdash; Ergonomía de la interacción persona-sistema &mdash; Parte 210: Diseño centrado en el ser humano para sistemas interactivos,&rdquo; ISO, Inf. Téc., 2019.</li>
+    <li>Organización Internacional de Normalización, &ldquo;ISO 9241-110:2020 &mdash; Ergonomía de la interacción persona-sistema &mdash; Parte 110: Principios de diálogo,&rdquo; ISO, Inf. Téc., 2020.</li>
+    <li>Organización Internacional de Normalización, &ldquo;ISO 9241-12:1998 &mdash; Requisitos ergonómicos para trabajos de oficina con pantallas de visualización &mdash; Parte 12: Presentación de la información,&rdquo; ISO, Inf. Téc., 1998.</li>
+    <li>E. J. Chikofsky y J. H. Cross, &ldquo;Reverse engineering and design recovery: A taxonomy,&rdquo; <i>IEEE Software</i>, vol. 7, no. 1, pp. 13&ndash;17, Ene. 1990.</li>
+    <li>J. Nielsen, <i>Usability Engineering</i>. San Francisco, CA, EE. UU.: Morgan Kaufmann, 1993.</li>
+    <li>R. B. Cleveland, W. S. Cleveland, J. E. McRae e I. Terpenning, &ldquo;STL: A seasonal-trend decomposition procedure based on Loess,&rdquo; <i>Journal of Official Statistics</i>, vol. 6, no. 1, pp. 3&ndash;73, 1990.</li>
+    <li>T. Chen y C. Guestrin, &ldquo;XGBoost: A scalable tree boosting system,&rdquo; en <i>Actas de la 22da Conf. Int. ACM SIGKDD sobre Descubrimiento de Conocimiento y Minería de Datos</i>, 2016, pp. 785&ndash;794.</li>
+  </ol>
+
+</div>
+
+</body>
+</html>
