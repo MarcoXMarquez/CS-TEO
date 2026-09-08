@@ -1,7 +1,7 @@
 """
 Plataforma de Vigilancia y Monitoreo Epidemiológico IRA - Perú (2000-2023)
-Implementación bajo Normas de Calidad ISO 9241 (11, 210, 110, 12) e ISO/IEC 25010.
-Enriquecida con Design Tokens, shadcn/ui, Magic UI, Aceternity UI, Vaul, Lenis y Motion Primitives.
+Sistema de Información para la Toma de Decisiones en Salud Pública.
+Conforme a Normas Internacionales ISO 9241 (11, 210, 110, 12) e ISO/IEC 25010.
 """
 
 import sys
@@ -12,7 +12,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Configuración del path de importación
+# Configuración del entorno de ejecución
 CURRENT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(CURRENT_DIR))
 
@@ -23,21 +23,20 @@ from src.services.model_service import EpidemiologyModelService
 # CONFIGURACIÓN DE PÁGINA (ISO 9241-12: Densidad Visual y Ergonomía Espacial)
 # ==============================================================================
 st.set_page_config(
-    page_title="Vigilancia Epidemiológica IRA Perú | ISO 9241 Quality Suite",
-    page_icon="🏥",
+    page_title="Sistema de Vigilancia Epidemiológica IRA Perú | Calidad ISO 9241",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # ==============================================================================
-# MASTER STYLESHEET: DESIGN TOKENS & SKILLS MODERNAS (ISO 9241-11, 210, 110, 12)
+# HOJA DE ESTILOS INSTITUCIONAL (DESIGN TOKENS & CALIDAD ISO 9241)
+# Paleta Clínica Normalizada, Tipografía Formal y Cero Emojis
 # ==============================================================================
 st.markdown(
     """
     <style>
     /* ==========================================================================
-       1. DESIGN TOKENS (ISO 9241-12 & ISO 9241-110)
-       Escala de 8pt, tipografía fluida, sombras multicapa y paleta HSL accesible
+       DESIGN TOKENS - PALETA INSTITUCIONAL Y ERGONOMÍA VISUAL
        ========================================================================== */
     :root {
         --space-1: 4px;
@@ -46,32 +45,40 @@ st.markdown(
         --space-4: 16px;
         --space-6: 24px;
         --space-8: 32px;
-        --space-12: 48px;
 
-        --radius-sm: 6px;
-        --radius-md: 10px;
-        --radius-lg: 16px;
-        --radius-xl: 22px;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
 
-        --bg-main: #f8fafc;
-        --card-bg: #ffffff;
-        --text-primary: #0f172a;
-        --text-secondary: #475569;
-        --text-muted: #64748b;
-        --border-color: #e2e8f0;
-        --brand-blue: #0284c7;
-        --brand-indigo: #4f46e5;
-        --brand-emerald: #10b981;
-        --brand-amber: #f59e0b;
-        --brand-rose: #e11d48;
+        --bg-surface: #ffffff;
+        --bg-canvas: #f8fafc;
+        --text-headline: #0f172a;
+        --text-body: #334155;
+        --text-subtle: #64748b;
+        --border-subtle: #e2e8f0;
+        --border-medium: #cbd5e1;
 
-        --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
-        --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
-        --shadow-elevated: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
-        --shadow-glow: 0 0 24px rgba(2, 132, 199, 0.18);
+        --navy-primary: #0f172a;
+        --blue-primary: #1e3a8a;
+        --blue-accent: #0284c7;
+
+        --alert-danger-bg: #fef2f2;
+        --alert-danger-text: #991b1b;
+        --alert-danger-border: #fecaca;
+
+        --alert-warning-bg: #fffbeb;
+        --alert-warning-text: #92400e;
+        --alert-warning-border: #fde68a;
+
+        --alert-normal-bg: #f0fdf4;
+        --alert-normal-text: #166534;
+        --alert-normal-border: #bbf7d0;
+
+        --shadow-subtle: 0 1px 2px rgba(15, 23, 42, 0.04);
+        --shadow-card: 0 2px 6px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.03);
     }
 
-    /* LENIS: Scroll suave y accesible */
+    /* Navegación y Scroll Suave (Lenis) */
     html {
         scroll-behavior: smooth;
     }
@@ -84,192 +91,184 @@ st.markdown(
         }
     }
 
-    /* ==========================================================================
-       2. ACETERNITY UI: AURORA GRADIENT MESH & 3D TILT
-       ========================================================================== */
-    .aurora-hero {
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--radius-xl);
-        background: linear-gradient(135deg, #0b1329 0%, #0f172a 50%, #0369a1 100%);
-        color: #ffffff;
-        padding: 26px 32px;
+    /* Banner Institucional Superior */
+    .institutional-hero {
+        background-color: var(--navy-primary);
+        border: 1px solid #1e293b;
+        border-radius: var(--radius-md);
+        padding: 24px 28px;
         margin-bottom: 16px;
-        box-shadow: var(--shadow-elevated);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    .aurora-mesh {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at 15% 30%, rgba(56, 189, 248, 0.3) 0%, transparent 45%),
-                    radial-gradient(circle at 85% 70%, rgba(129, 140, 248, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 50% 10%, rgba(14, 165, 233, 0.25) 0%, transparent 40%);
-        filter: blur(35px);
-        pointer-events: none;
-        animation: aurora-flow 18s ease-in-out infinite alternate;
-    }
-    @keyframes aurora-flow {
-        0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-        50% { transform: scale(1.1) rotate(3deg); opacity: 1.0; }
-        100% { transform: scale(1.05) rotate(-2deg); opacity: 0.85; }
-    }
-
-    .card-3d-tilt {
-        background: #ffffff;
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-lg);
-        padding: 20px 22px;
         box-shadow: var(--shadow-card);
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+        color: #ffffff;
     }
-    .card-3d-tilt:hover {
-        transform: translateY(-5px) rotateX(2deg) rotateY(-1deg);
-        box-shadow: var(--shadow-elevated), var(--shadow-glow);
-        border-color: rgba(2, 132, 199, 0.4);
+    .institutional-badge {
+        display: inline-block;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #93c5fd;
+        background-color: rgba(30, 58, 138, 0.45);
+        border: 1px solid rgba(147, 197, 253, 0.3);
+        padding: 3px 10px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 10px;
+    }
+    .institutional-title {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin: 0 0 6px 0;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+    }
+    .institutional-subtitle {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        margin: 0;
+        font-weight: 400;
     }
 
-    /* ==========================================================================
-       3. MAGIC UI: MARQUEE TICKER, BORDER BEAM & SHINY TEXT
-       ========================================================================== */
-    .marquee-wrapper {
+    /* Cintillo Informativo Monospaciado (Magic UI Marquee) */
+    .bulletin-ticker-wrapper {
         overflow: hidden;
         white-space: nowrap;
-        background: #0f172a;
-        border-radius: var(--radius-md);
-        padding: 7px 0;
-        margin-bottom: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+        background-color: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: var(--radius-sm);
+        padding: 6px 0;
+        margin-bottom: 18px;
     }
-    .marquee-text {
+    .bulletin-ticker-content {
         display: inline-block;
         padding-left: 100%;
-        animation: marquee-scroll 38s linear infinite;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-        font-size: 0.85rem;
+        animation: bulletin-scroll 45s linear infinite;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
         font-weight: 500;
-        color: #94a3b8;
+        color: #cbd5e1;
+        letter-spacing: 0.02em;
     }
-    .marquee-text:hover {
+    .bulletin-ticker-content:hover {
         animation-play-state: paused;
     }
-    @keyframes marquee-scroll {
+    @keyframes bulletin-scroll {
         0% { transform: translate(0, 0); }
         100% { transform: translate(-100%, 0); }
     }
 
-    .border-beam-alert {
-        position: relative;
-        border-radius: var(--radius-lg);
+    /* Tarjetas de Indicadores Clave (KPIs) - shadcn / Design Tokens */
+    .kpi-card {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
         padding: 16px 20px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        overflow: hidden;
         box-shadow: var(--shadow-card);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .border-beam-alert::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: var(--radius-lg);
-        padding: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: beam-run 4s linear infinite;
-        pointer-events: none;
+    .kpi-card:hover {
+        border-color: var(--border-medium);
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
     }
-    @keyframes beam-run {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-    }
-
-    .alert-danger { background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-    .alert-warning { background-color: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-    .alert-normal { background-color: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
-
-    .shiny-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(8px);
-        color: #e0f2fe;
-        padding: 5px 12px;
-        border-radius: 9999px;
+    .kpi-label {
         font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
+        font-weight: 600;
+        color: var(--text-subtle);
         text-transform: uppercase;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
     }
-
-    /* ==========================================================================
-       4. VAUL: IOS-STYLE BOTTOM DRAWER / INSPECTOR
-       ========================================================================== */
-    .vaul-drawer-card {
-        background: #ffffff;
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-xl);
-        padding: 22px 26px;
-        box-shadow: var(--shadow-card);
-        margin-top: 18px;
-    }
-    .vaul-pill-handle {
-        width: 46px;
-        height: 5px;
-        background-color: #cbd5e1;
-        border-radius: 9999px;
-        margin: 0 auto 16px auto;
-    }
-
-    /* ==========================================================================
-       5. BENTO GRID SYSTEM (MAGIC UI + SHADCN)
-       ========================================================================== */
-    .bento-card {
-        background: #ffffff;
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-lg);
-        padding: 20px;
-        box-shadow: var(--shadow-card);
-        height: 100%;
-        transition: transform 0.2s ease;
-    }
-    .bento-card:hover {
-        transform: translateY(-2px);
-    }
-    .bento-title {
-        font-size: 1.05rem;
+    .kpi-value {
+        font-size: 1.95rem;
         font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 8px;
+        color: var(--text-headline);
+        margin: 2px 0 6px 0;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
     }
-    .bento-desc {
-        font-size: 0.88rem;
-        color: var(--text-secondary);
-        line-height: 1.45;
+    .kpi-subtext {
+        font-size: 0.8rem;
+        color: var(--text-subtle);
     }
 
-    /* SHADCN/UI TABS & METRICS REFINEMENT */
+    /* Alerta Epidemiológica Sobria (ISO 9241-12) */
+    .clinical-alert {
+        border-radius: var(--radius-md);
+        padding: 14px 18px;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-bottom: 18px;
+    }
+    .clinical-alert-danger {
+        background-color: var(--alert-danger-bg);
+        border-left: 4px solid var(--alert-danger-text);
+        border-top: 1px solid var(--alert-danger-border);
+        border-right: 1px solid var(--alert-danger-border);
+        border-bottom: 1px solid var(--alert-danger-border);
+        color: var(--alert-danger-text);
+    }
+    .clinical-alert-warning {
+        background-color: var(--alert-warning-bg);
+        border-left: 4px solid var(--alert-warning-text);
+        border-top: 1px solid var(--alert-warning-border);
+        border-right: 1px solid var(--alert-warning-border);
+        border-bottom: 1px solid var(--alert-warning-border);
+        color: var(--alert-warning-text);
+    }
+    .clinical-alert-normal {
+        background-color: var(--alert-normal-bg);
+        border-left: 4px solid var(--alert-normal-text);
+        border-top: 1px solid var(--alert-normal-border);
+        border-right: 1px solid var(--alert-normal-border);
+        border-bottom: 1px solid var(--alert-normal-border);
+        color: var(--alert-normal-text);
+    }
+
+    /* Bento Grid Analítico */
+    .analytical-box {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        padding: 18px 20px;
+        box-shadow: var(--shadow-card);
+        margin-bottom: 14px;
+    }
+    .analytical-box-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-headline);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    /* Pestañas Ejecutivas */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 4px;
+        gap: 4px;
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 2px;
     }
     .stTabs [data-baseweb="tab"] {
-        border-radius: var(--radius-md);
+        border-radius: var(--radius-sm);
         padding: 8px 16px;
         font-weight: 600;
-        font-size: 0.92rem;
-        color: var(--text-secondary);
+        font-size: 0.88rem;
+        color: var(--text-subtle);
     }
     .stTabs [aria-selected="true"] {
         background-color: #f1f5f9 !important;
-        color: var(--brand-blue) !important;
+        color: var(--navy-primary) !important;
+        border-bottom: 2px solid var(--blue-primary) !important;
+    }
+
+    /* Panel de Notas Metodológicas (Vaul) */
+    .methodology-panel {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        padding: 16px 20px;
+        margin-top: 24px;
     }
     </style>
     """,
@@ -286,66 +285,70 @@ def get_services():
 data_service, model_service = get_services()
 
 # ==============================================================================
-# BARRA LATERAL (SIDEBAR): Filtros globales ergonómicos (ISO 9241-110: Diálogo)
+# BARRA LATERAL: PARÁMETROS DE VIGILANCIA (ISO 9241-110: Diálogo Ergonómico)
 # ==============================================================================
 with st.sidebar:
-    st.markdown("### 🎛️ Centro de Comando Sanitario")
-    st.caption("*(Contexto Operativo Human-Centered Design - ISO 9241-210)*")
+    st.markdown("### Parámetros de Vigilancia")
+    st.caption("Configuración del contexto de análisis epidemiológico (ISO 9241-210)")
 
-    # Filtro 1: Grupo Etario
+    # Filtro 1: Grupo Poblacional
     group_option = st.radio(
-        "Grupo Poblacional de Riesgo:",
-        options=["Niños menores de 5 años (<5)", "Adultos mayores de 60 años (60+)"],
+        "Grupo Poblacional Objetivo:",
+        options=[
+            "Población Pediátrica: Menores de 5 años (men5)",
+            "Población Geriátrica: Adultos de 60 años a más (60mas)",
+        ],
         index=0,
-        help="Segmentación demográfica de riesgo según directivas del CDC/MINSA Perú.",
+        help="Segmentación demográfica de riesgo conforme a directivas epidemiológicas nacionales.",
     )
-    group_key = "men5" if "5" in group_option else "60mas"
-    group_label = "Niños <5 años" if group_key == "men5" else "Adultos 60+ años"
+    group_key = "men5" if "men5" in group_option else "60mas"
+    group_label = "Menores de 5 años (men5)" if group_key == "men5" else "Adultos 60 años a más (60mas)"
 
     # Filtro 2: Ámbito Territorial
     departments = ["Nacional (Consolidado)"] + data_service.get_departments()
     selected_scope = st.selectbox(
-        "Ámbito Geográfico:",
+        "Ámbito Territorial:",
         options=departments,
         index=0,
-        help="Permite alternar entre la visión macro nacional o la inspección detallada por región.",
+        help="Selección de consolidado nacional o desagregación por departamento.",
     )
 
-    # Filtro 3: Rango de Años
+    # Filtro 3: Período Temporal
     year_range = st.slider(
-        "Ventana Temporal de Análisis:",
+        "Período de Análisis (Años):",
         min_value=2000,
         max_value=2023,
         value=(2000, 2023),
         step=1,
-        help="Serie temporal estandarizada de 24 años epidemiológicos.",
+        help="Ventana temporal para el cómputo de indicadores retrospectivos.",
     )
 
     st.markdown("---")
-    st.markdown("#### 🛡️ Calidad de Software & Normas ISO")
-    st.caption("✅ **ISO 9241-11:** Eficacia, Eficiencia y Satisfacción")
-    st.caption("✅ **ISO 9241-210:** Diseño Centrado en el Humano")
-    st.caption("✅ **ISO 9241-110:** Principios de Diálogo Ergonómico")
-    st.caption("✅ **ISO 9241-12:** Presentación Visual & Semáforo")
-    st.caption("✅ **ISO/IEC 25010:** Modularidad & Fiabilidad")
+    st.markdown("#### Marco de Calidad del Software")
+    st.caption("• ISO 9241-11: Medición de Usabilidad")
+    st.caption("• ISO 9241-210: Diseño Centrado en el Humano")
+    st.caption("• ISO 9241-110: Principios de Diálogo")
+    st.caption("• ISO 9241-12: Representación Visual de Información")
+    st.caption("• ISO/IEC 25010: Calidad del Producto Software")
 
     st.markdown("---")
-    st.caption("Trabajo Introducción - Calidad de Software")
-    st.caption("Equipo: 05 Integrantes | Fecha: Martes 01 de noviembre")
+    st.caption("Curso: Calidad de Software")
+    st.caption("Modalidad: Equipo de 05 Integrantes")
+    st.caption("Fecha Oficial: Martes 01 de noviembre")
 
 # ==============================================================================
-# CARGA Y FILTRADO DE DATOS
+# CARGA Y FILTRADO DE DATOS EPIDEMIOLÓGICOS
 # ==============================================================================
 is_national = selected_scope == "Nacional (Consolidado)"
 
 if is_national:
     df_raw = data_service.get_national_summary()
-    scope_title = "Nivel Nacional (Perú Consolidado)"
+    scope_title = "Nivel Nacional (Consolidado República del Perú)"
 else:
     df_raw = data_service.get_department_data(selected_scope)
     scope_title = f"Departamento de {selected_scope}"
 
-# Filtrado por ventana temporal
+# Filtrado por rango de años
 df_filtered = df_raw[(df_raw["year"] >= year_range[0]) & (df_raw["year"] <= year_range[1])].copy()
 
 # Cálculo de KPIs para el año más reciente de la selección
@@ -353,22 +356,19 @@ latest_year = year_range[1]
 kpis = data_service.compute_kpis(df_filtered, group=group_key, year=latest_year)
 
 # ==============================================================================
-# 1. ENCABEZADO AURORA & HERO (ACETERNITY UI + MAGIC UI + SHADCN)
+# 1. ENCABEZADO INSTITUCIONAL
 # ==============================================================================
 st.markdown(
     f"""
-    <div class="aurora-hero">
-        <div class="aurora-mesh"></div>
-        <div style="position: relative; z-index: 2;">
-            <div class="shiny-badge">🛡️ ISO 9241 Quality Architecture • Suite de Vigilancia Sanitaria</div>
-            <h1 style="font-size: 2.1rem; font-weight: 800; margin: 0 0 6px 0; letter-spacing: -0.02em;">
-                Vigilancia y Monitoreo de Infecciones Respiratorias Agudas (IRA / Neumonías)
-            </h1>
-            <p style="font-size: 1.02rem; color: #bae6fd; margin: 0; font-weight: 400;">
-                Ámbito: <strong style="color: #ffffff;">{scope_title}</strong> |
-                Población Objetivo: <strong style="color: #ffffff;">{group_label}</strong> |
-                Período: <strong style="color: #ffffff;">{year_range[0]} - {year_range[1]}</strong>
-            </p>
+    <div class="institutional-hero">
+        <div class="institutional-badge">SISTEMA DE VIGILANCIA SANITARIA • NORMATIVA ISO 9241 COMPLIANT</div>
+        <div class="institutional-title">
+            Plataforma de Monitoreo y Vigilancia Epidemiológica de Infecciones Respiratorias Agudas
+        </div>
+        <div class="institutional-subtitle">
+            Ámbito: <strong>{scope_title}</strong> |
+            Población: <strong>{group_label}</strong> |
+            Período Evaluado: <strong>{year_range[0]} - {year_range[1]}</strong>
         </div>
     </div>
     """,
@@ -376,22 +376,22 @@ st.markdown(
 )
 
 # ==============================================================================
-# 2. MARQUEE TICKER EPIDEMIOLÓGICO EN VIVO (MAGIC UI)
+# 2. CINTILLO OFICIAL DE BOLETÍN EPIDEMIOLÓGICO (MAGIC UI MARQUEE FORMAL)
 # ==============================================================================
-ticker_content = (
-    "🚨 ALERTA SELVA INFANTIL: Ucayali y Loreto lideran la incidencia crítica pediátrica con >91.7% de permanencia en el Top 3 • "
-    "⚠️ ALERTA SIERRA SUR ADULTOS: Arequipa y Cusco concentran la mayor vulnerabilidad geriátrica (88.9% y 61.1% en Top 3) • "
-    "📈 DESEMPEÑO PREDICTIVO: XGBoost alcanza coeficiente R² = 0.935 en niños y 0.890 en adultos mayores • "
-    "📊 NORMALIZACIÓN CENSAL: Población anual interpolada para los 25 departamentos de Perú (2000-2023) • "
-    "🏥 INDICADORES CLÍNICOS: Monitoreo continuo de Tasa de Hospitalización (HR) y Tasa de Letalidad (CFR) • "
-    "🛡️ CALIDAD DE SOFTWARE: Cumplimiento auditado de normas ISO 9241-11, 210, 110 y 12"
+bulletin_items = (
+    "BOLETÍN EPIDEMIOLÓGICO CONSOLIDADO | "
+    "REGIONES DE ALTO IMPACTO EN POBLACIÓN PEDIÁTRICA: UCAYALI Y LORETO REGISTRAN >91.7% DE PERMANENCIA EN CATEGORÍA 1 | "
+    "REGIONES DE ALTO IMPACTO EN ADULTOS MAYORES: AREQUIPA (88.9%) Y CUSCO (61.1%) CONCENTRAN MAYOR VULNERABILIDAD ANDINA | "
+    "MODELADO PREDICTIVO: ALGORITMO XGBOOST ALCANZA COEFICIENTE DE DETERMINACIÓN R² = 0.935 EN PROYECCIÓN DE 52 SEMANAS | "
+    "NORMALIZACIÓN CENSAL: CÁLCULOS ESTANDARIZADOS POR 100,000 HABITANTES MEDIANTE POBLACIÓN INTERPOLADA 2000-2023 | "
+    "INDICADORES DE SEVERIDAD: MONITOREO CONTINUO DE HOSPITALIZACIÓN (HR) Y LETALIDAD (CFR)"
 )
 
 st.markdown(
     f"""
-    <div class="marquee-wrapper">
-        <div class="marquee-text">
-            <span>{ticker_content}</span>
+    <div class="bulletin-ticker-wrapper">
+        <div class="bulletin-ticker-content">
+            {bulletin_items}
         </div>
     </div>
     """,
@@ -399,128 +399,139 @@ st.markdown(
 )
 
 # ==============================================================================
-# 3. SISTEMA DE SEMÁFORO CON BORDER BEAM (ISO 9241-12 & MAGIC UI)
+# 3. EVALUACIÓN Y SEMÁFORO DE ALERTA SANITARIA (ISO 9241-12)
 # ==============================================================================
 inc_rate = kpis["cases_rate"]
 if inc_rate > 350:
-    alert_class = "alert-danger"
-    alert_icon = "🚨"
-    alert_type = "ALERTA EPIDEMIOLÓGICA CRÍTICA"
-    alert_desc = f"Tasa de incidencia muy elevada ({inc_rate:.1f} por 100k hab.). Se recomienda activar comités de emergencia, reforzar la provisión de oxígeno y asegurar stock de antibióticos pediátricos/geriátricos."
+    alert_class = "clinical-alert-danger"
+    alert_code = "[ESTADO EPIDEMIOLÓGICO: ALERTA CRÍTICA]"
+    alert_msg = (
+        f"La tasa de incidencia acumulada se sitúa en {inc_rate:.1f} por 100,000 habitantes, superando "
+        "el umbral de seguridad estacional. Se recomienda la activación de planes de contingencia hospitalaria, "
+        "monitoreo de disponibilidad de oxígeno medicinal y abastecimiento oportuno de medicamentos esenciales."
+    )
 elif inc_rate > 150:
-    alert_class = "alert-warning"
-    alert_icon = "⚠️"
-    alert_type = "ALERTA PREVENTIVA AMARILLA"
-    alert_desc = f"Tasa de incidencia moderada ({inc_rate:.1f} por 100k hab.). Se sugiere seguimiento epidemiológico semanal y campañas de vacunación estacional activa."
+    alert_class = "clinical-alert-warning"
+    alert_code = "[ESTADO EPIDEMIOLÓGICO: ALERTA PREVENTIVA]"
+    alert_msg = (
+        f"La tasa de incidencia se encuentra en {inc_rate:.1f} por 100,000 habitantes en zona de advertencia. "
+        "Se recomienda intensificar el seguimiento semanal de casos y verificar cobertura de vacunación."
+    )
 else:
-    alert_class = "alert-normal"
-    alert_icon = "🟢"
-    alert_type = "ESTADO CONTROLADO / ZONA VERDE"
-    alert_desc = f"Tasa de incidencia baja ({inc_rate:.1f} por 100k hab.). Se encuentra dentro de los umbrales de seguridad sanitaria histórica."
+    alert_class = "clinical-alert-normal"
+    alert_code = "[ESTADO EPIDEMIOLÓGICO: BAJO CONTROL]"
+    alert_msg = (
+        f"La tasa de incidencia de {inc_rate:.1f} por 100,000 habitantes se mantiene dentro de los percentiles "
+        "históricos esperados para el período analizado."
+    )
 
 st.markdown(
     f"""
-    <div class="border-beam-alert {alert_class}">
-        {alert_icon} <strong>{alert_type}:</strong> {alert_desc}
+    <div class="clinical-alert {alert_class}">
+        <strong>{alert_code}</strong> — {alert_msg}
     </div>
     """,
     unsafe_allow_html=True,
 )
 
 # ==============================================================================
-# 4. TARJETAS DE INDICADORES CLAVE (KPIs) CON 3D TILT (ACETERNITY UI + DESIGN TOKENS)
+# 4. TARJETAS DE INDICADORES CLAVE (KPIS)
 # ==============================================================================
-col1, col2, col3, col4 = st.columns(4)
+col_kpi1, col_kpi2, col_kpi3, col_kpi4 = st.columns(4)
 
-with col1:
+with col_kpi1:
+    delta_sign = "+" if kpis["delta_cases_pct"] > 0 else ""
+    delta_color = "#991b1b" if kpis["delta_cases_pct"] > 0 else "#166534"
     st.markdown(
         f"""
-        <div class="card-3d-tilt">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Casos Reportados ({int(kpis['year'])})</div>
-            <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin: 6px 0;">{int(kpis['cases']):,}</div>
-            <div style="font-size: 0.84rem; font-weight: 600; color: {'#dc2626' if kpis['delta_cases_pct'] > 0 else '#16a34a'};">
-                {kpis['delta_cases_pct']:+.1f}% vs año previo
+        <div class="kpi-card">
+            <div class="kpi-label">Casos Diagnosticados ({int(kpis['year'])})</div>
+            <div class="kpi-value">{int(kpis['cases']):,}</div>
+            <div style="font-size: 0.82rem; font-weight: 600; color: {delta_color};">
+                {delta_sign}{kpis['delta_cases_pct']:.1f}% vs. año previo
             </div>
-            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">Total anual acumulado</div>
+            <div class="kpi-subtext">Total anual registrado</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-with col2:
+with col_kpi2:
+    delta_rate_sign = "+" if kpis["delta_rate"] > 0 else ""
+    delta_rate_color = "#991b1b" if kpis["delta_rate"] > 0 else "#166534"
     st.markdown(
         f"""
-        <div class="card-3d-tilt">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Tasa Incidencia x 100k</div>
-            <div style="font-size: 2.2rem; font-weight: 800; color: var(--brand-blue); margin: 6px 0;">{kpis['cases_rate']:.1f}</div>
-            <div style="font-size: 0.84rem; font-weight: 600; color: {'#dc2626' if kpis['delta_rate'] > 0 else '#16a34a'};">
-                {kpis['delta_rate']:+.1f} pts de variación
+        <div class="kpi-card">
+            <div class="kpi-label">Tasa Incidencia x 100k hab.</div>
+            <div class="kpi-value" style="color: var(--blue-primary);">{kpis['cases_rate']:.1f}</div>
+            <div style="font-size: 0.82rem; font-weight: 600; color: {delta_rate_color};">
+                {delta_rate_sign}{kpis['delta_rate']:.1f} puntos de tasa
             </div>
-            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">(Casos / Población) × 100k</div>
+            <div class="kpi-subtext">(Casos / Población) × 100,000</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-with col3:
+with col_kpi3:
     st.markdown(
         f"""
-        <div class="card-3d-tilt">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Hospitalización (HR)</div>
-            <div style="font-size: 2.2rem; font-weight: 800; color: #d97706; margin: 6px 0;">{kpis['hr']:.2f}%</div>
-            <div style="font-size: 0.84rem; font-weight: 600; color: var(--text-secondary);">
+        <div class="kpi-card">
+            <div class="kpi-label">Tasa de Hospitalización (HR)</div>
+            <div class="kpi-value" style="color: #92400e;">{kpis['hr']:.2f}%</div>
+            <div style="font-size: 0.82rem; font-weight: 600; color: var(--text-body);">
                 {int(kpis['hospitalizations']):,} internamientos
             </div>
-            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">Presión sobre camas clínicas</div>
+            <div class="kpi-subtext">(Hospitalizados / Casos) × 100</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-with col4:
+with col_kpi4:
     st.markdown(
         f"""
-        <div class="card-3d-tilt">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Letalidad (CFR)</div>
-            <div style="font-size: 2.2rem; font-weight: 800; color: #dc2626; margin: 6px 0;">{kpis['cfr']:.2f}%</div>
-            <div style="font-size: 0.84rem; font-weight: 600; color: var(--text-secondary);">
+        <div class="kpi-card">
+            <div class="kpi-label">Tasa de Letalidad (CFR)</div>
+            <div class="kpi-value" style="color: #991b1b;">{kpis['cfr']:.2f}%</div>
+            <div style="font-size: 0.82rem; font-weight: 600; color: var(--text-body);">
                 {int(kpis['deaths']):,} defunciones
             </div>
-            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">Gravedad clínica extrema</div>
+            <div class="kpi-subtext">(Defunciones / Casos) × 100</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-st.markdown("<div style='height: 18px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
 # ==============================================================================
-# 5. PESTAÑAS PRINCIPALES DE TRABAJO (ISO 9241-110: Principios de Diálogo)
+# 5. PESTAÑAS PRINCIPALES (ORGANIZACIÓN EJECUTIVA CON NUMERACIÓN ROMANA)
 # ==============================================================================
-tab_general, tab_severity, tab_rankings, tab_forecast, tab_iso = st.tabs([
-    "📊 Tablero Histórico",
-    "🏥 Severidad & Estacionalidad",
-    "🗺️ Bento Grid Territorial",
-    "🤖 Pronóstico & Alerta Temprana (ML/LSTM)",
-    "📜 Marco de Calidad & Trazabilidad ISO",
+tab_trend, tab_severity, tab_regional, tab_prediction, tab_quality = st.tabs([
+    "I. Vigilancia Temporal y Tendencias",
+    "II. Severidad Clínica y Letalidad (HR / CFR)",
+    "III. Estratificación Departamental y Carga Regional",
+    "IV. Modelos Predictivos y Proyecciones (ML / DL)",
+    "V. Auditoría de Calidad y Estándares ISO 9241",
 ])
 
 # ------------------------------------------------------------------------------
-# TAB 1: TABLERO HISTÓRICO INTERACTIVO
+# PESTAÑA I: VIGILANCIA TEMPORAL Y TENDENCIAS
 # ------------------------------------------------------------------------------
-with tab_general:
-    st.subheader(f"Evolución Histórica de Neumonías e IRA - {scope_title}")
+with tab_trend:
+    st.markdown(f"#### Tendencia Histórica Anual — {scope_title}")
 
-    col_chart_ctl1, col_chart_ctl2 = st.columns([3, 1])
-    with col_chart_ctl2:
+    col_opt_left, col_opt_right = st.columns([3, 1])
+    with col_opt_right:
         metric_choice = st.selectbox(
-            "Métrica a visualizar:",
-            options=["Tasa Incidencia x 100k", "Casos Totales", "Hospitalizaciones", "Defunciones"],
+            "Seleccionar Indicador:",
+            options=["Tasa de Incidencia x 100k hab.", "Casos Totales", "Hospitalizaciones", "Defunciones"],
             index=0,
         )
 
     metric_map = {
-        "Tasa Incidencia x 100k": f"cases_rate_{group_key}",
+        "Tasa de Incidencia x 100k hab.": f"cases_rate_{group_key}",
         "Casos Totales": f"cases_{group_key}",
         "Hospitalizaciones": f"hosp_{group_key}",
         "Defunciones": f"death_{group_key}",
@@ -532,20 +543,19 @@ with tab_general:
         x="year",
         y=selected_col,
         markers=True,
-        title=f"Tendencia Epidemiológica Anual de {metric_choice} ({year_range[0]} - {year_range[1]})",
-        labels={"year": "Año Calendario", selected_col: metric_choice},
-        color_discrete_sequence=["#1d4ed8" if group_key == "60mas" else "#0284c7"],
+        title=f"Serie Temporal Retrospectiva: {metric_choice} ({year_range[0]} - {year_range[1]})",
+        labels={"year": "Año Epidemiológico", selected_col: metric_choice},
+        color_discrete_sequence=["#1e40af" if group_key == "men5" else "#0f766e"],
     )
     fig_trend.update_layout(
         hovermode="x unified",
         template="plotly_white",
         xaxis=dict(tickmode="linear", tick0=2000, dtick=2),
-        margin=dict(l=20, r=20, t=50, b=20),
+        margin=dict(l=20, r=20, t=40, b=20),
     )
     st.plotly_chart(fig_trend, use_container_width=True)
 
-    # Exportación controlada por el usuario (ISO 9241-110)
-    with st.expander("📄 Ver y Exportar Matriz de Datos Históricos"):
+    with st.expander("Tabla de Datos Retrospectivos y Exportación"):
         display_cols = [
             "year",
             f"cases_{group_key}",
@@ -569,34 +579,36 @@ with tab_general:
         st.dataframe(df_display, use_container_width=True, hide_index=True)
         csv_data = df_display.to_csv(index=False).encode("utf-8")
         st.download_button(
-            label="⬇️ Descargar Datos Históricos (.CSV)",
+            label="Descargar Serie Consolidada (.CSV)",
             data=csv_data,
-            file_name=f"historico_ira_{group_key}_{scope_title.lower().replace(' ', '_')}.csv",
+            file_name=f"reporte_epidemiologico_{group_key}_{scope_title.lower().replace(' ', '_')}.csv",
             mime="text/csv",
         )
 
 # ------------------------------------------------------------------------------
-# TAB 2: SEVERIDAD Y ESTACIONALIDAD
+# PESTAÑA II: SEVERIDAD CLÍNICA Y LETALIDAD
 # ------------------------------------------------------------------------------
 with tab_severity:
-    st.subheader("Análisis Clínico de Severidad: Hospitalización (HR) vs Letalidad (CFR)")
+    st.markdown("#### Dinámica de Severidad Clínica: Demanda Hospitalaria y Tasa de Letalidad")
     st.markdown(
         """
-        * **Tasa de Hospitalización (HR):** Demanda sobre la capacidad de internamiento ($HR = \text{Hospitalizados} / \text{Casos} \times 100$).
-        * **Tasa de Letalidad (CFR):** Gravedad biológica y letalidad ($CFR = \text{Defunciones} / \text{Casos} \times 100$).
+        * **Tasa de Hospitalización (HR):** Proporción de casos atendidos que requirieron internamiento formal 
+          ($HR = \text{Hospitalizaciones} / \text{Casos} \times 100$). Representa el índice de presión hospitalaria.
+        * **Tasa de Letalidad (CFR):** Proporción de casos que concluyeron en defunción confirmada 
+          ($CFR = \text{Defunciones} / \text{Casos} \times 100$). Representa la gravedad biológica y letalidad intrínseca.
         """
     )
 
-    col_sev1, col_sev2 = st.columns(2)
+    col_sev_a, col_sev_b = st.columns(2)
 
-    with col_sev1:
+    with col_sev_a:
         fig_sev = go.Figure()
         fig_sev.add_trace(
             go.Scatter(
                 x=df_filtered["year"],
                 y=df_filtered[f"hr_{group_key}"],
-                name="Tasa Hospitalización (HR %)",
-                line=dict(color="#f59e0b", width=3),
+                name="Tasa de Hospitalización (HR %)",
+                line=dict(color="#d97706", width=2.5),
                 mode="lines+markers",
             )
         )
@@ -604,13 +616,13 @@ with tab_severity:
             go.Scatter(
                 x=df_filtered["year"],
                 y=df_filtered[f"cfr_{group_key}"],
-                name="Tasa Letalidad (CFR %)",
-                line=dict(color="#dc2626", width=3, dash="dot"),
+                name="Tasa de Letalidad (CFR %)",
+                line=dict(color="#b91c1c", width=2.5, dash="dot"),
                 mode="lines+markers",
             )
         )
         fig_sev.update_layout(
-            title="Evolución Temporal de HR y CFR",
+            title="Evolución Comparativa: Hospitalización vs Letalidad",
             xaxis_title="Año",
             yaxis_title="Porcentaje (%)",
             template="plotly_white",
@@ -618,35 +630,34 @@ with tab_severity:
         )
         st.plotly_chart(fig_sev, use_container_width=True)
 
-    with col_sev2:
+    with col_sev_b:
         fig_scatter = px.scatter(
             df_filtered,
             x=f"hr_{group_key}",
             y=f"cfr_{group_key}",
             text="year",
             size=f"cases_{group_key}",
-            title="Cuadrante de Presión Hospitalaria (HR) vs Gravedad (CFR)",
+            title="Cuadrante de Correlación: Presión Hospitalaria (HR) vs Letalidad (CFR)",
             labels={
-                f"hr_{group_key}": "Tasa Hospitalización (HR %)",
-                f"cfr_{group_key}": "Tasa Letalidad (CFR %)",
+                f"hr_{group_key}": "Tasa de Hospitalización (HR %)",
+                f"cfr_{group_key}": "Tasa de Letalidad (CFR %)",
             },
             color=f"cases_rate_{group_key}",
-            color_continuous_scale="Viridis",
+            color_continuous_scale="Blues",
         )
         fig_scatter.update_traces(textposition="top center")
         fig_scatter.update_layout(template="plotly_white")
         st.plotly_chart(fig_scatter, use_container_width=True)
 
 # ------------------------------------------------------------------------------
-# TAB 3: BENTO GRID TERRITORIAL (MAGIC UI & SHADCN/UI)
+# PESTAÑA III: ESTRATIFICACIÓN DEPARTAMENTAL Y CARGA REGIONAL
 # ------------------------------------------------------------------------------
-with tab_rankings:
-    st.subheader("Vigilancia Territorial: Bento Grid de Riesgo Departamental")
-    st.markdown("Estructuración visual en cuadrícula asimétrica para identificación inmediata de patrones espaciales:")
+with tab_regional:
+    st.markdown("#### Estratificación Territorial y Categorización de Riesgo Departamental")
 
-    col_bento_left, col_bento_right = st.columns([7, 5])
+    col_reg_left, col_reg_right = st.columns([7, 5])
 
-    with col_bento_left:
+    with col_reg_left:
         top3_df = data_service.get_top3_frequencies(group=group_key)
         if not top3_df.empty:
             fig_top3 = px.bar(
@@ -654,8 +665,8 @@ with tab_rankings:
                 x="region",
                 y="top3_appearances",
                 text="percent_years_in_top3",
-                title=f"Top 10 Departamentos con Mayor Frecuencia en Alerta Crítica ({group_label})",
-                labels={"region": "Departamento", "top3_appearances": "Años en Top 3 (2000-2023)"},
+                title=f"Departamentos con Mayor Persistencia en Categoría 1 de Incidencia ({group_label})",
+                labels={"region": "Departamento", "top3_appearances": "Años en el Top 3 (2000-2023)"},
                 color="top3_appearances",
                 color_continuous_scale="Reds",
             )
@@ -663,21 +674,21 @@ with tab_rankings:
             fig_top3.update_layout(template="plotly_white", xaxis_tickangle=-45)
             st.plotly_chart(fig_top3, use_container_width=True)
         else:
-            st.info("No se halló la tabla de frecuencias para este grupo.")
+            st.info("No se hallaron registros tabulados para la estratificación regional.")
 
-    with col_bento_right:
-        # Bento Grid Cards
+    with col_reg_right:
         if group_key == "men5":
             st.markdown(
                 """
-                <div class="bento-card" style="border-left: 4px solid #ef4444; margin-bottom: 14px;">
-                    <div class="bento-title">🚨 Vulnerabilidad Geográfica: Selva Peruana</div>
-                    <div class="bento-desc">
-                        Los niños menores de 5 años presentan una concentración persistente y alarmante en la cuenca amazónica:
+                <div class="analytical-box" style="border-left: 4px solid #b91c1c;">
+                    <div class="analytical-box-title">Hallazgo Epidemiológico: Concentración en Cuenca Amazónica</div>
+                    <div style="font-size: 0.88rem; color: var(--text-body); line-height: 1.5;">
+                        En menores de 5 años, la mayor persistencia histórica de incidencia crítica se concentra 
+                        en los departamentos de selva:
                         <ul style="margin: 6px 0 0 16px; padding: 0;">
-                            <li><strong>UCAYALI:</strong> 91.7% de los años en el Top 3 crítico.</li>
-                            <li><strong>LORETO:</strong> 91.7% de los años en el Top 3 crítico.</li>
-                            <li><strong>HUÁNUCO:</strong> 37.5% de los años en el Top 3 crítico.</li>
+                            <li><strong>Ucayali:</strong> 91.7% de los años evaluados en Categoría 1.</li>
+                            <li><strong>Loreto:</strong> 91.7% de los años evaluados en Categoría 1.</li>
+                            <li><strong>Huánuco:</strong> 37.5% de los años evaluados en Categoría 1.</li>
                         </ul>
                     </div>
                 </div>
@@ -687,14 +698,15 @@ with tab_rankings:
         else:
             st.markdown(
                 """
-                <div class="bento-card" style="border-left: 4px solid #f59e0b; margin-bottom: 14px;">
-                    <div class="bento-title">⚠️ Vulnerabilidad Geográfica: Sierra Sur Andina</div>
-                    <div class="bento-desc">
-                        En adultos mayores de 60 años, la carga epidemiológica se desplaza a las zonas de heladas severas:
+                <div class="analytical-box" style="border-left: 4px solid #b45309;">
+                    <div class="analytical-box-title">Hallazgo Epidemiológico: Concentración en Sierra Sur</div>
+                    <div style="font-size: 0.88rem; color: var(--text-body); line-height: 1.5;">
+                        En adultos de 60 años a más, la carga de enfermedad crítica se desplaza hacia las 
+                        regiones andinas afectadas por heladas severas:
                         <ul style="margin: 6px 0 0 16px; padding: 0;">
-                            <li><strong>AREQUIPA:</strong> 88.9% de los años en el Top 3 crítico.</li>
-                            <li><strong>CUSCO:</strong> 61.1% de los años en el Top 3 crítico.</li>
-                            <li><strong>MOQUEGUA:</strong> 50.0% de los años en el Top 3 crítico.</li>
+                            <li><strong>Arequipa:</strong> 88.9% de los años evaluados en Categoría 1.</li>
+                            <li><strong>Cusco:</strong> 61.1% de los años evaluados en Categoría 1.</li>
+                            <li><strong>Moquegua:</strong> 50.0% de los años evaluados en Categoría 1.</li>
                         </ul>
                     </div>
                 </div>
@@ -704,14 +716,14 @@ with tab_rankings:
 
         st.markdown(
             """
-            <div class="bento-card" style="border-left: 4px solid #0284c7;">
-                <div class="bento-title">📊 Metodología de Quintiles de Riesgo</div>
-                <div class="bento-desc">
-                    Los 25 departamentos se clasifican en 5 categorías de riesgo sanitario:<br>
-                    • <strong>Categoría 1 (Puestos 1–5):</strong> Carga muy alta / Prioridad 1.<br>
-                    • <strong>Categoría 2 (Puestos 6–10):</strong> Carga alta.<br>
-                    • <strong>Categoría 3 (Puestos 11–15):</strong> Carga media.<br>
-                    • <strong>Categoría 4-5 (Puestos 16–25):</strong> Carga baja y muy baja.
+            <div class="analytical-box" style="border-left: 4px solid var(--blue-primary);">
+                <div class="analytical-box-title">Estratificación en Quintiles de Severidad</div>
+                <div style="font-size: 0.88rem; color: var(--text-body); line-height: 1.5;">
+                    Los 25 departamentos del Perú se clasifican anualmente en 5 quintiles normativos:<br>
+                    • <strong>Categoría 1 (Puestos 1 al 5):</strong> Carga muy alta / Prioridad sanitaria I.<br>
+                    • <strong>Categoría 2 (Puestos 6 al 10):</strong> Carga alta.<br>
+                    • <strong>Categoría 3 (Puestos 11 al 15):</strong> Carga media.<br>
+                    • <strong>Categorías 4 y 5 (Puestos 16 al 25):</strong> Carga moderada y baja.
                 </div>
             </div>
             """,
@@ -719,52 +731,52 @@ with tab_rankings:
         )
 
 # ------------------------------------------------------------------------------
-# TAB 4: PRONÓSTICOS & ALERTA TEMPRANA (ML / LSTM)
+# PESTAÑA IV: MODELOS PREDICTIVOS Y PROYECCIONES
 # ------------------------------------------------------------------------------
-with tab_forecast:
-    st.subheader(f"Modelos Predictivos y Alerta Temprana a 52 Semanas ({group_label})")
+with tab_prediction:
+    st.markdown(f"#### Validación Retrospectiva y Proyección a 52 Semanas ({group_label})")
 
     metrics_df = model_service.get_national_metrics(group=group_key)
-    col_met1, col_met2 = st.columns([2, 1])
+    col_ml_1, col_ml_2 = st.columns([2, 1])
 
-    with col_met1:
-        st.markdown("#### 📈 Precisión en Validación Rodante (Rolling Backtesting 5 Años)")
+    with col_ml_1:
+        st.markdown("##### Métricas Oficiales de Precisión (Rolling Backtesting de 5 Años)")
         st.dataframe(
             metrics_df[["model_display", "mae", "rmse", "r2"]].rename(
-                columns={"model_display": "Modelo", "mae": "MAE", "rmse": "RMSE", "r2": "Coeficiente R²"}
+                columns={"model_display": "Modelo Evaluado", "mae": "MAE", "rmse": "RMSE", "r2": "Coeficiente R²"}
             ),
             use_container_width=True,
             hide_index=True,
         )
 
-    with col_met2:
+    with col_ml_2:
         best_model = metrics_df.sort_values("r2", ascending=False).iloc[0]
         st.markdown(
             f"""
-            <div class="card-3d-tilt" style="border-left: 4px solid var(--brand-emerald);">
-                <div style="font-size: 0.82rem; font-weight: 700; color: var(--brand-emerald); text-transform: uppercase;">🏆 Modelo de Mayor Precisión</div>
-                <div style="font-size: 1.6rem; font-weight: 800; margin: 4px 0;">{best_model['model_display']}</div>
-                <div style="font-size: 0.95rem; color: var(--text-secondary);">
+            <div class="analytical-box" style="border-left: 4px solid #15803d;">
+                <div class="analytical-box-title" style="color: #15803d;">Modelo con Desempeño Óptimo</div>
+                <div style="font-size: 1.35rem; font-weight: 700; color: var(--text-headline); margin: 4px 0;">{best_model['model_display']}</div>
+                <div style="font-size: 0.9rem; color: var(--text-body); line-height: 1.5;">
                     • Coeficiente R²: <strong>{best_model['r2']:.3f}</strong><br>
-                    • Error Medio (MAE): <strong>{best_model['mae']:.3f}</strong><br>
-                    • Error Cuadrático (RMSE): <strong>{best_model['rmse']:.3f}</strong>
+                    • Error Absoluto Medio (MAE): <strong>{best_model['mae']:.3f}</strong><br>
+                    • Raíz de Error Cuadrático (RMSE): <strong>{best_model['rmse']:.3f}</strong>
                 </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-    st.markdown("#### 🔮 Proyección Predictiva a 52 Semanas con Intervalos de Incertidumbre (95% CI)")
+    st.markdown("##### Proyección Predictiva con Bandas de Incertidumbre (95% CI)")
     future_df = model_service.get_national_future_predictions(group=group_key)
 
     if not future_df.empty:
         fig_pred = go.Figure()
         models_in_pred = future_df["model"].unique()
-        colors = {"xgboost": "#b45309", "random_forest": "#15803d", "lstm": "#4338ca"}
+        colors = {"xgboost": "#1e3a8a", "random_forest": "#15803d", "lstm": "#4338ca"}
 
         for mod in models_in_pred:
             sub = future_df[future_df["model"] == mod].sort_values("date")
-            color = colors.get(mod, "#3b82f6")
+            color = colors.get(mod, "#0284c7")
             name = "XGBoost" if mod == "xgboost" else "Random Forest" if mod == "random_forest" else mod.upper()
 
             fig_pred.add_trace(
@@ -773,7 +785,7 @@ with tab_forecast:
                     y=sub["predicted"],
                     mode="lines",
                     name=f"Pronóstico {name}",
-                    line=dict(color=color, width=3),
+                    line=dict(color=color, width=2.5),
                 )
             )
 
@@ -782,24 +794,24 @@ with tab_forecast:
                     x=pd.concat([sub["date"], sub["date"][::-1]]),
                     y=pd.concat([sub["upper_ci"], sub["lower_ci"][::-1]]),
                     fill="toself",
-                    fillcolor="rgba(203, 213, 225, 0.3)",
+                    fillcolor="rgba(203, 213, 225, 0.25)",
                     line=dict(color="rgba(255,255,255,0)"),
                     hoverinfo="skip",
                     showlegend=True,
-                    name=f"Banda de Incertidumbre 95% ({name})",
+                    name=f"Intervalo 95% CI ({name})",
                 )
             )
 
         fig_pred.update_layout(
-            title="Pronóstico Semanal de Incidencia a 52 Semanas",
-            xaxis_title="Semana Epidemiológica Proyectada",
-            yaxis_title="Tasa de Incidencia",
+            title="Horizonte Temporal de Pronóstico: Incidencia Semanal Proyectada",
+            xaxis_title="Semana Epidemiológica Futura",
+            yaxis_title="Tasa de Incidencia Predicha",
             template="plotly_white",
             hovermode="x unified",
         )
         st.plotly_chart(fig_pred, use_container_width=True)
 
-    st.markdown("#### 🧠 Interpretabilidad del Modelo: Importancia de Variables")
+    st.markdown("##### Interpretabilidad del Modelo: Importancia de Variables")
     feat_df = model_service.get_feature_importance_summary(group=group_key)
     if not feat_df.empty and "importance" in feat_df.columns:
         fig_feat = px.bar(
@@ -816,67 +828,66 @@ with tab_forecast:
         st.plotly_chart(fig_feat, use_container_width=True)
 
 # ------------------------------------------------------------------------------
-# TAB 5: MARCO DE CALIDAD & TRAZABILIDAD ISO (ISO 9241 & ISO/IEC 25010)
+# PESTAÑA V: AUDITORÍA DE CALIDAD Y ESTÁNDARES ISO 9241
 # ------------------------------------------------------------------------------
-with tab_iso:
-    st.subheader("Marco de Calidad de Software: Cumplimiento de Normas ISO 9241 y 25010")
+with tab_quality:
+    st.markdown("#### Matriz de Trazabilidad y Cumplimiento Normativo ISO 9241 e ISO/IEC 25010")
     st.markdown(
         """
-        La presente plataforma demuestra cómo la aplicación coordinada de las normas internacionales de ergonomía
-        e interacción humano-sistema (**ISO 9241**) y calidad de producto (**ISO/IEC 25010**) transforma datos
-        analíticos abstractos en herramientas efectivas de decisión médica:
+        El diseño, arquitectura e implementación de la presente plataforma se fundamentan en estándares
+        internacionales de ergonomía de la interacción humano-sistema y calidad de producto de software:
         """
     )
 
     iso_full_data = [
         {
-            "Norma": "ISO 9241-11",
-            "Principio Clave": "Medición de Usabilidad",
-            "Atributos": "Eficacia, Eficiencia, Satisfacción",
-            "Implementación en la Plataforma": (
-                "• Eficacia: Consultas sin errores de 25 regiones y 2 grupos etarios en 2 selecciones.\n"
-                "• Eficiencia: Caché en memoria (@st.cache_resource) con respuesta instantánea (<0.2s).\n"
-                "• Satisfacción: Entorno visual moderno con Aceternity Aurora y gráficos interactivos Plotly."
+            "Estándar": "ISO 9241-11",
+            "Principio Rector": "Medición de Usabilidad",
+            "Dimensiones Clave": "Eficacia, Eficiencia y Satisfacción",
+            "Implementación en el Sistema": (
+                "• Eficacia: Consultas sin errores de 25 departamentos y 2 grupos etarios en 2 selecciones directas.\n"
+                "• Eficiencia: Caché en memoria (@st.cache_resource) que reduce el tiempo de renderizado a <0.2s.\n"
+                "• Satisfacción: Visualización sobria, libre de ruido visual, con tablas y exportación formal en CSV."
             ),
         },
         {
-            "Norma": "ISO 9241-210",
-            "Principio Clave": "Diseño Centrado en el Humano (HCD)",
-            "Atributos": "Contexto de uso, comprensión de tareas y evaluación iterativa",
-            "Implementación en la Plataforma": (
-                "• Adaptado al flujo cognitivo del epidemiólogo peruano.\n"
-                "• Secuencia: Diagnóstico macro (Semáforo) → Severidad hospitalaria → Vigilancia regional → Predicción a 52 semanas."
+            "Estándar": "ISO 9241-210",
+            "Principio Rector": "Diseño Centrado en el Humano (HCD)",
+            "Dimensiones Clave": "Comprensión del contexto de uso y necesidades del usuario",
+            "Implementación en el Sistema": (
+                "• Adaptado al flujo cognitivo de especialistas en salud pública y directores de epidemiología.\n"
+                "• Estructura en secuencia: Diagnóstico macro (Semáforo) → Severidad clínica → Estratificación → Proyección a 52 semanas."
             ),
         },
         {
-            "Norma": "ISO 9241-110",
-            "Principio Clave": "Principios de Diálogo Ergonómico",
-            "Atributos": "Adecuación a la tarea, autodescripción, control del usuario, tolerancia a fallos",
-            "Implementación en la Plataforma": (
-                "• Adecuación: Tasas por 100k hab. para evitar distorsiones demográficas.\n"
-                "• Autodescripción: Tooltips informativos en cada métrica y fórmula clínica.\n"
-                "• Control: Filtros temporales libres (2000-2023) y descarga en CSV.\n"
-                "• Tolerancia: Manejo robusto de datos nulos y divisiones entre cero."
+            "Estándar": "ISO 9241-110",
+            "Principio Rector": "Principios de Diálogo Ergonómico",
+            "Dimensiones Clave": "Adecuación a la tarea, autodescripción, control del usuario, tolerancia a fallos",
+            "Implementación en el Sistema": (
+                "• Adecuación: Tasas por 100k hab. estandarizadas para evitar distorsiones demográficas.\n"
+                "• Autodescripción: Notas metodológicas y glosario explícito de términos clínicos.\n"
+                "• Control: Filtros temporales libres (2000-2023) y exportación de datos.\n"
+                "• Tolerancia: Manejo matemático defensivo de divisiones entre cero y datos incompletos."
             ),
         },
         {
-            "Norma": "ISO 9241-12",
-            "Principio Clave": "Presentación Visual de la Información",
-            "Atributos": "Legibilidad, organización espacial, codificación de color, agrupamiento",
-            "Implementación en la Plataforma": (
-                "• Cuadrícula matemática de 8pt (Design Tokens) y tarjetas de KPIs jerárquicas.\n"
-                "• Semáforo de alerta con Border Beam luminoso (Verde, Amarillo, Rojo).\n"
-                "• Paletas de alto contraste accesibles para personas con daltonismo."
+            "Estándar": "ISO 9241-12",
+            "Principio Rector": "Representación Visual de la Información",
+            "Dimensiones Clave": "Organización espacial, legibilidad, agrupamiento perceptivo y color",
+            "Implementación en el Sistema": (
+                "• Rejilla matemática de 8pt (Design Tokens) y jerarquía tipográfica con ratios formales.\n"
+                "• Semáforo de alerta con colores institucionales normalizados (Verde, Amarillo, Rojo tenue).\n"
+                "• Contraste visual estricto (WCAG AA >= 4.5:1) accesible para personas con daltonismo."
             ),
         },
         {
-            "Norma": "ISO/IEC 25010",
-            "Principio Clave": "Calidad del Producto Software",
-            "Atributos": "Mantenibilidad, modularidad, fiabilidad, portabilidad",
-            "Implementación en la Plataforma": (
-                "• Ingeniería inversa: Código legado encapsulado en servicios (data_service, model_service).\n"
-                "• Fiabilidad: Suite de 6 pruebas unitarias automatizadas con 100% de éxito.\n"
-                "• Portabilidad: Despliegue con un solo clic mediante ejecutar_aplicativo.bat."
+            "Estándar": "ISO/IEC 25010",
+            "Principio Rector": "Calidad del Producto Software",
+            "Dimensiones Clave": "Modularidad, fiabilidad, mantenibilidad, portabilidad",
+            "Implementación en el Sistema": (
+                "• Ingeniería Inversa: Encapsulación del código legado en servicios modulares desacoplados.\n"
+                "• Fiabilidad: Suite automatizada de 6 pruebas unitarias con 100% de casos aprobados.\n"
+                "• Portabilidad: Despliegue local inmediato en Windows mediante archivo ejecutar_aplicativo.bat."
             ),
         },
     ]
@@ -884,26 +895,25 @@ with tab_iso:
     st.table(pd.DataFrame(iso_full_data))
 
 # ==============================================================================
-# 6. VAUL: DRAWER / INSPECTOR INFERIOR DE GLOSARIO & METODOLOGÍA
+# 6. PANEL INFERIOR: ESPECIFICACIONES METODOLÓGICAS (VAUL DRAWER STYLE)
 # ==============================================================================
 st.markdown(
     """
-    <div class="vaul-drawer-card">
-        <div class="vaul-pill-handle"></div>
-        <h4 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 1.05rem;">
-            📱 Inspector Metodológico & Glosario Clínico (Diseño Estilo Vaul Drawer)
-        </h4>
-        <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            <strong>Fórmulas y Estándares Epidemiológicos Implementados:</strong><br>
-            • <strong>Tasa de Incidencia:</strong> <code>(Casos / Población) × 100,000 hab</code> (Normalizada por censos anuales interpolados).<br>
-            • <strong>Hospitalization Rate (HR):</strong> <code>(Hospitalizaciones / Casos) × 100</code> (Refleja la demanda sobre camas de internamiento).<br>
-            • <strong>Case Fatality Ratio (CFR):</strong> <code>(Defunciones / Casos) × 100</code> (Refleja la letalidad directa de la enfermedad).<br>
-            • <strong>Intervalos de Confianza (95% CI):</strong> <code>Pronóstico ± 1.96 × RMSE</code> (Comunica la incertidumbre forecast).
+    <div class="methodology-panel">
+        <div style="width: 40px; height: 4px; background-color: #cbd5e1; border-radius: 9999px; margin: 0 auto 12px auto;"></div>
+        <div style="font-size: 0.92rem; font-weight: 700; color: var(--text-headline); margin-bottom: 6px; text-transform: uppercase;">
+            Especificaciones Metodológicas y Glosario Epidemiológico
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-body); line-height: 1.55;">
+            • <strong>Tasa de Incidencia Estandarizada:</strong> <code>(Casos / Población) × 100,000 hab.</code> (Ajustada por interpolación poblacional censal anual).<br>
+            • <strong>Hospitalization Rate (HR):</strong> <code>(Hospitalizaciones / Casos) × 100</code> (Porcentaje de pacientes que requirieron internamiento hospitalario).<br>
+            • <strong>Case Fatality Ratio (CFR):</strong> <code>(Defunciones / Casos) × 100</code> (Porcentaje de defunciones sobre el total de casos confirmados).<br>
+            • <strong>Bandas de Incertidumbre Predictiva:</strong> <code>Pronóstico ± 1.96 × RMSE</code> (Intervalo de confianza empírico al 95%).
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-st.markdown("<div style='height: 24px;'></div>", unsafe_allow_html=True)
-st.caption("Sistema de Vigilancia Epidemiológica de Salud Pública © 2026 - Conforme a Normas ISO 9241 e ISO/IEC 25010")
+st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+st.caption("Plataforma de Vigilancia Epidemiológica de Salud Pública © 2026 — Diseñada bajo Estándares ISO 9241 e ISO/IEC 25010")
