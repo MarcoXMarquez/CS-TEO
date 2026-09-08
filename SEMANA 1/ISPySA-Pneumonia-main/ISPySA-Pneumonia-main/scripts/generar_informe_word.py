@@ -365,6 +365,43 @@ def build_report():
             cell.paragraphs[0].runs[0].font.size = Pt(9.5)
             cell.paragraphs[0].runs[0].font.name = "Arial"
 
+    doc.add_heading("4.2 Enriquecimiento Ergonómico mediante Ecosistema de Skills Modernas", level=2)
+    p_skills_intro = doc.add_paragraph(
+        "Para elevar la usabilidad más allá de plantillas convencionales y garantizar el estricto cumplimiento "
+        "de las normas ISO 9241, se integraron 7 skills de diseño y frontend moderno en la arquitectura web:"
+    )
+    p_skills_intro.runs[0].font.name = "Arial"
+
+    table_skills = doc.add_table(rows=1, cols=3)
+    table_skills.alignment = WD_TABLE_ALIGNMENT.CENTER
+    s_hdr = table_skills.rows[0].cells
+    s_hdr[0].text = "Skill / Ecosistema"
+    s_hdr[1].text = "Norma ISO Vinculada"
+    s_hdr[2].text = "Aporte Ergonómico y Calidad"
+    for cell in s_hdr:
+        set_cell_background(cell, "1E293B")
+        cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(255, 255, 255)
+        cell.paragraphs[0].runs[0].font.bold = True
+
+    skills_data = [
+        ("Design Tokens", "ISO 9241-12 / 110", "Rejilla matemática de 8pt, tipografía fluida con clamp() y contraste WCAG AA >= 4.5:1 que elimina fatiga visual."),
+        ("shadcn/ui", "ISO 9241-11 / 110", "Diseño limpio y minimalista basado en Radix UI que maximiza la eficacia en la toma de decisiones sin sobrecarga."),
+        ("Magic UI", "ISO 9241-12 / 11", "Border Beam luminoso para resaltar alertas críticas, Marquee Ticker continuo y Bento Grid para estructurar datos territoriales."),
+        ("Aceternity UI", "ISO 9241-11 / 110", "Fondo Aurora suave en el hero y perspectiva 3D interactiva en tarjetas de KPIs que confirma la interactividad (affordance)."),
+        ("Vaul", "ISO 9241-210 / 110", "Bottom sheet táctil deslizable (iOS Drawer) para consultar fórmulas y glosario epidemiológico sin abandonar el análisis."),
+        ("Lenis", "ISO 9241-11 / 12", "Desplazamiento inercial suave que reduce tirones visuales y respeta el estándar de accesibilidad prefers-reduced-motion."),
+        ("Motion Primitives", "ISO 9241-110 / 11", "Contadores numéricos elásticos (Number Tickers) que proporcionan retroalimentación inmediata del estado de cálculo dinámico."),
+    ]
+
+    for sk_name, sk_iso, sk_desc in skills_data:
+        r_c = table_skills.add_row().cells
+        r_c[0].text = sk_name
+        r_c[1].text = sk_iso
+        r_c[2].text = sk_desc
+        for cell in r_c:
+            cell.paragraphs[0].runs[0].font.size = Pt(9.5)
+            cell.paragraphs[0].runs[0].font.name = "Arial"
+
     # ==========================================================================
     # 5. PLAN DE PRUEBAS Y RESULTADOS
     # ==========================================================================
