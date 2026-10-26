@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Slide Viewer Pro | 16:9 Presentation & PDF Engine</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Epilogue', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B0F19',
+              card: '#151D2F',
+              accent: '#34909D',
+              crimson: '#BA0034',
+              amber: '#F8B85E',
+              blue: '#55C0ED'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Local PDF Generation Libraries (with CDN fallback) -->
+  <script src="vendor/html2canvas.min.js"></script>
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script>
+    // Fallback to CDN if vendor files failed to load
+    if (typeof html2canvas === 'undefined') {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      document.head.appendChild(s);
+    }
+    if (typeof window.jspdf === 'undefined') {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+      document.head.appendChild(s);
+    }
+  </script>
+
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body class="h-full bg-brand-dark text-slate-100 flex flex-col overflow-hidden select-none">
+
+  <!-- TOP BAR: Controls and Metadata -->
+  <header id="top-bar" class="h-14 bg-[#111827] border-b border-slate-800 px-4 flex items-center justify-between shrink-0 z-40 transition-all duration-300">
+    <!-- Left: Branding & Deck Selector -->
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#34909D] to-[#BA0034] flex items-center justify-center font-heading font-black text-white text-sm shadow-md">
+        SV
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="font-heading font-extrabold text-sm text-white tracking-wide">SLIDE VIEWER</span>
+          <span class="px-2 py-0.5 text-[10px] font-mono font-bold bg-[#34909D]/20 text-[#55C0ED] border border-[#34909D]/30 rounded-full">
+            16:9 PRO
+          </span>
+        </div>
+      </div>
+
+      <div class="h-5 w-px bg-slate-800 mx-2"></div>
+
+      <!-- Presets / File Selector -->
+      <div class="flex items-center space-x-2">
+        <select id="deck-selector" class="bg-slate-900 border border-slate-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-[#34909D] focus:outline-none">
+          <optgroup label="Diapositivas del Proyecto">
+            <option value="../slides/trabajo_6_iso29119/diapositivas_iso29119.html" selected>TP6 - Automatización E2E ISO 29119 (Grupo 02)</option>
+            <option value="../slides/trabajo_enunciado_solucion_tp5/enunciado_solucion.html">TP5 - Solución Enunciado (ISO 20246 & 5055)</option>
+            <option value="../slides/trabajo_2_ieee730_e_iso9000_agil/diapositivas_equipo.html">Trabajo 2 - Quality Nexus (Pitch Deck)</option>
+          </optgroup>
+          <optgroup label="Opciones">
+            <option value="custom">📁 Cargar archivo HTML local...</option>
+          </optgroup>
+        </select>
+        <input type="file" id="file-input" accept=".html,.htm" class="hidden">
+      </div>
+    </div>
+
+    <!-- Center: Slide Navigation Counter & Progress -->
+    <div class="flex items-center space-x-3">
+      <button id="btn-prev" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-700 active:scale-95" title="Anterior (← o Flecha Arriba)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <div class="flex items-center space-x-1.5 font-mono text-xs px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg">
+        <span id="slide-current" class="font-bold text-white text-sm">01</span>
+        <span class="text-slate-500">/</span>
+        <span id="slide-total" class="text-slate-400">14</span>
+      </div>
+
+      <button id="btn-next" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-700 active:scale-95" title="Siguiente (→ o Espacio)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <!-- Timer -->
+      <div id="presentation-timer" class="hidden sm:flex items-center space-x-1 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono text-slate-300 cursor-pointer hover:border-slate-700" title="Click para iniciar/pausar cronómetro">
+        <span class="text-emerald-400 text-[10px]">●</span>
+        <span id="timer-display">00:00</span>
+      </div>
+    </div>
+
+    <!-- Right: Viewport Controls, Overview & PDF Export -->
+    <div class="flex items-center space-x-2">
+      <!-- Overview Grid Button -->
+      <button id="btn-overview" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5 text-xs font-semibold border border-slate-700" title="Vista de Mosaico (O)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+        <span class="hidden md:inline">Mosaico (O)</span>
+      </button>
+
+      <!-- Fullscreen Button -->
+      <button id="btn-fullscreen" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5 text-xs font-semibold border border-slate-700" title="Pantalla Completa (F)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+        <span class="hidden md:inline">Pantalla Completa (F)</span>
+      </button>
+
+      <!-- EXPORT TO PDF BUTTON (Exact 16:9 Pixel-Perfect) -->
+      <button id="btn-export-pdf" class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-[#BA0034] to-[#BA0034]/90 hover:from-[#BA0034]/90 hover:to-[#99002B] text-white transition flex items-center space-x-1.5 text-xs font-bold shadow-md shadow-[#BA0034]/20 border border-[#BA0034]/50 active:scale-95" title="Exportar a PDF exacto 16:9 sin desfasar elementos (P)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span>Exportar PDF</span>
+      </button>
+
+      <!-- Print Fallback -->
+      <button id="btn-print-native" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition border border-slate-700" title="Impresión de Navegador (Ctrl+P)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR (Subtle on Top) -->
+  <div class="h-1 w-full bg-slate-900 shrink-0">
+    <div id="deck-progress-bar" class="h-full bg-gradient-to-r from-[#34909D] to-[#55C0ED] transition-all duration-300" style="width: 7.14%"></div>
+  </div>
+
+  <!-- MAIN PRESENTATION STAGE (Letterboxed 16:9 Canvas) -->
+  <main id="stage-wrapper" class="flex-1 relative flex items-center justify-center p-3 sm:p-6 overflow-hidden bg-slate-950">
+    
+    <!-- Stage Box (Always 16:9 ratio, auto-scaled via transform) -->
+    <div id="slide-stage" class="slide-stage shadow-2xl rounded-xl overflow-hidden border border-slate-800 bg-[#F4F5F7] text-[#2F3136]">
+      <iframe id="slide-frame" src="../slides/trabajo_enunciado_solucion_tp5/enunciado_solucion.html" class="w-full h-full border-none"></iframe>
+    </div>
+
+    <!-- On-Screen Navigation Overlay Chevrons (Appear on hover) -->
+    <button id="overlay-prev" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition duration-200 border border-slate-700/50 backdrop-blur-sm z-30" title="Anterior">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="overlay-next" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white flex items-center justify-center opacity-0 hover:opacity-100 transition duration-200 border border-slate-700/50 backdrop-blur-sm z-30" title="Siguiente">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <!-- Floating Fullscreen Helper (Bottom Center) -->
+    <div id="floating-bar" class="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-full flex items-center space-x-3 text-xs text-slate-300 opacity-0 hover:opacity-100 transition duration-300 z-30 pointer-events-auto">
+      <span id="floating-title" class="font-medium text-white truncate max-w-[200px] sm:max-w-xs">Diapositiva</span>
+      <span class="text-slate-600">|</span>
+      <span>Presiona <kbd class="px-1.5 py-0.5 rounded bg-slate-800 font-mono text-[10px] text-white">F</kbd> Pantalla Completa</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-800 font-mono text-[10px] text-white">O</kbd> Mosaico</span>
+      <span><kbd class="px-1.5 py-0.5 rounded bg-slate-800 font-mono text-[10px] text-white">P</kbd> PDF</span>
+    </div>
+
+    <!-- Drag & Drop Overlay Indicator -->
+    <div id="dropzone-overlay" class="absolute inset-0 bg-[#34909D]/20 border-4 border-dashed border-[#34909D] backdrop-blur-sm flex flex-col items-center justify-center z-50 hidden transition-all">
+      <div class="bg-slate-900/90 p-8 rounded-2xl border border-slate-700 shadow-2xl text-center max-w-md">
+        <svg class="w-16 h-16 text-[#34909D] mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+        <h3 class="text-lg font-heading font-bold text-white mb-1">Suelta tu archivo HTML aquí</h3>
+        <p class="text-xs text-slate-400">El visor cargará automáticamente las diapositivas y las adaptará a 16:9 con exportación a PDF.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: OVERVIEW GRID (Mosaico de Diapositivas) -->
+  <div id="overview-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex flex-col p-6 hidden">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6 shrink-0">
+      <div class="flex items-center space-x-3">
+        <h2 class="text-lg font-heading font-bold text-white">Mosaico de Diapositivas</h2>
+        <span id="overview-badge" class="px-2 py-0.5 text-xs font-mono bg-slate-800 text-slate-300 rounded-full">14 láminas</span>
+      </div>
+      <button id="overview-close" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Cerrar (Esc)">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    
+    <div id="overview-grid" class="flex-1 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pr-2">
+      <!-- Thumbnail cards injected dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- MODAL: EXPORTING PDF PROGRESS -->
+  <div id="export-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-6 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center">
+      <div class="w-14 h-14 rounded-full bg-[#BA0034]/20 border border-[#BA0034]/40 flex items-center justify-center text-[#BA0034] mx-auto mb-4 animate-pulse">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <h3 class="text-lg font-heading font-bold text-white mb-1">Exportando Presentación a PDF</h3>
+      <p id="export-status" class="text-xs text-slate-400 mb-6">Renderizando diapositiva 1 de 14 a resolución 16:9 nativa...</p>
+      
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden mb-3">
+        <div id="export-progress" class="bg-gradient-to-r from-[#BA0034] via-[#F8B85E] to-[#34909D] h-full transition-all duration-200" style="width: 0%"></div>
+      </div>
+      <div class="flex justify-between text-[11px] font-mono text-slate-500">
+        <span id="export-percent">0%</span>
+        <span>Manteniendo formato 16:9</span>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800 text-[11px] text-slate-400">
+        Cada lámina se procesa con fidelidad pixel-perfect idéntica a la vista en pantalla.
+      </div>
+    </div>
+  </div>
+
+  <!-- HIDDEN OFFSCREEN CAPTURE CONTAINER (For 100% stable 1920x1080 rendering) -->
+  <div id="capture-sandbox" style="position: fixed; left: -9999px; top: -9999px; width: 1920px; height: 1080px; overflow: hidden; z-index: -100; pointer-events: none;"></div>
+
+  <script src="viewer.js"></script>
+</body>
+</html>

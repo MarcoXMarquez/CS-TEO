@@ -1,0 +1,17 @@
+{
+  "name": "tests-playwright-iso29119",
+  "version": "1.0.0",
+  "description": "Suite de Pruebas Automatizadas E2E conforme a Norma ISO/IEC/IEEE 29119 - Grupo 02",
+  "main": "index.js",
+  "scripts": {
+    "test:ispysa": "playwright test tests_ispysa --project=chromium",
+    "test:saucedemo": "playwright test tests_saucedemo --project=chromium",
+    "test:all": "playwright test --project=chromium",
+    "test:run1": "playwright test --project=chromium --reporter=list,html",
+    "test:run2": "playwright test --project=chromium --reporter=list,html",
+    "test:run3": "playwright test --project=chromium --reporter=list,html"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

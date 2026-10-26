@@ -1,0 +1,684 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests_ispysa",
+      "--project=chromium"
+    ],
+    "configFile": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\playwright.config.js",
+    "rootDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright",
+        "snapshotDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "headless": true,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "ignoreHTTPSErrors": true,
+          "screenshot": "on",
+          "trace": "on",
+          "video": "off",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests_ispysa\\ispysa.spec.js",
+      "file": "tests_ispysa/ispysa.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "ISPySA-Pneumonia - Especificación ISO 29119",
+          "file": "tests_ispysa/ispysa.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "T01 [R1] - Carga institucional y contexto por defecto en cohorte pediátrica (men5)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4331,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:13:41.274Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-dd4cd-en-cohorte-pediátrica-men5--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-dd4cd-en-cohorte-pediátrica-men5--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d263c8b6c7836db6de73",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "T02 [R1] - Transición interactiva a cohorte geriátrica (60mas) actualiza contexto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4612,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:13:45.851Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-879d6-ca-60mas-actualiza-contexto-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-879d6-ca-60mas-actualiza-contexto-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-8432bfe754eec40c6e51",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "T03 [R2] - Banner de alerta sanitaria canaliza estado según normativa Bortman OPS",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3882,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:13:50.624Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-0cd36-según-normativa-Bortman-OPS-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-0cd36-según-normativa-Bortman-OPS-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-ff87cb6f709ef8254da7",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "T04 [R2] - Pestaña I renderiza el Corredor Endémico de Bortman y tarjetas de cuartiles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4654,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:13:54.625Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-1dcf7-man-y-tarjetas-de-cuartiles-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-1dcf7-man-y-tarjetas-de-cuartiles-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-5f43bae47cd0297ccae3",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "T05 [R3] - Pestaña II despliega evolución de tasas de hospitalización y letalidad",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4177,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:13:59.393Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-9e7f8-hospitalización-y-letalidad-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-9e7f8-hospitalización-y-letalidad-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-def120f7da246473f3e5",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 76,
+              "column": 3
+            },
+            {
+              "title": "T06 [R3] - Monitor de Triaje Manchester calcula recursos críticos (UCI y Oxígeno)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4519,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:03.712Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-ded75-sos-críticos-UCI-y-Oxígeno--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-ded75-sos-críticos-UCI-y-Oxígeno--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-e024f816be798ab024c7",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "T07 [R4] - Pestaña III despliega persistencia departamental en el Top 3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4478,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:08.362Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-c89cb-a-departamental-en-el-Top-3-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-c89cb-a-departamental-en-el-Top-3-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d78e551e1591867f5829",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 102,
+              "column": 3
+            },
+            {
+              "title": "T08 [R4] - Matriz Bioclimática estratifica departamentos por Heladas y Friaje",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4703,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:13.100Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-b81cb-mentos-por-Heladas-y-Friaje-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-b81cb-mentos-por-Heladas-y-Friaje-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-626983abcf2af3047390",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 112,
+              "column": 3
+            },
+            {
+              "title": "T09 [R5] - Consistencia aritmética en la Tasa de Hospitalización (HR)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3803,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:18.107Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-bf0c1-Tasa-de-Hospitalización-HR--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-bf0c1-Tasa-de-Hospitalización-HR--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-69fdc3f7b086ad9f0035",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "T10 [R5] - Consistencia aritmética en la Tasa de Letalidad (CFR)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4014,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:22.008Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-4556e-n-la-Tasa-de-Letalidad-CFR--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-4556e-n-la-Tasa-de-Letalidad-CFR--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d5441be527eed5022cb5",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 143,
+              "column": 3
+            },
+            {
+              "title": "T11 [R6] - Pestaña IV despliega métricas de precisión ML y modelo óptimo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3910,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:26.232Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-987e2-recisión-ML-y-modelo-óptimo-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-987e2-recisión-ML-y-modelo-óptimo-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-523174fb2b9acb04f4f2",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "T12 [R6] - Pestaña V contiene matriz de cumplimiento ISO 9241 e ISO/IEC 25010",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3739,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:30.310Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-46f35-to-ISO-9241-e-ISO-IEC-25010-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-46f35-to-ISO-9241-e-ISO-IEC-25010-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-3f826809cc18c978e947",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 172,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T02:13:40.778Z",
+    "duration": 53629.332,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

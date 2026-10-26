@@ -1,0 +1,65 @@
+===============================================================================
+  INSTRUCCIONES DE REVISION Y EVALUACION - CALIDAD DE SOFTWARE (TP5)
+  PROYECTO: ISPySA-Pneumonia | VIGILANCIA EPIDEMIOLOGICA EN SALUD PUBLICA
+  EQUIPO 05: Yoel, Marco, Jeremy, Rafael, Leo
+===============================================================================
+
+Estimado Profesor / Evaluador:
+
+Este paquete contiene la solucion integral y ejecutable para el proyecto 
+de salud publica, articulando el software con las normas ISO/IEC 5055:2021, 
+ISO/IEC 25010, ISO 9241 e ISO 20246:2017.
+
+Para probar y revisar el proyecto rapidamente, hemos preparado 3 accesos 
+directos (.BAT):
+
+-------------------------------------------------------------------------------
+1. [1_ABRIR_DASHBOARD_ISO.bat] -> (RECOMENDADO / REVISION INMEDIATA EN 1 CLIC)
+-------------------------------------------------------------------------------
+- Abre directamente el dashboard interactivo (dashboard_iso_salud.html) en su 
+  navegador predeterminado.
+- NO requiere instalar Python ni dependencias. Funciona 100% de manera local.
+- Que evaluar aqui:
+  * Pestaña 1: Vigilancia Epidemiologica y Alertas (2000-2023), Ránking de 
+    regiones (Ucayali, Loreto, Arequipa) y radar de normas ISO.
+  * Pestaña 2: Motor AST de Calidad de Codigo ISO/IEC 5055 (Seguridad, 
+    Confiabilidad, Rendimiento, Mantenibilidad, formula QGS >= 85%).
+    Incluye tabla con boton "Inspect Code" para ver los patrones defensivos 
+    reales del codigo Python.
+  * Pestaña 3: Modelos Predictivos y Telemetria (XGBoost R2 = 0.935, Random 
+    Forest R2 = 0.922, LSTM) con bandas de confianza al 95%.
+  * Pestaña 4: Arquitectura Tripartita (Captura -> Procesamiento -> Presentacion), 
+    Sello criptografico SHA-256 y matriz de cierre ISO 20246:2017.
+  * Botones superiores de escenario: Pruebe hacer clic en "Inject Flaw" para 
+    ver como el Quality Gate de CI/CD bloquea el pase a produccion.
+
+-------------------------------------------------------------------------------
+2. [2_EJECUTAR_APP_STREAMLIT.bat] -> (EJECUCION DEL CODIGO FUENTE PYTHON)
+-------------------------------------------------------------------------------
+- Levanta el aplicativo original en Streamlit (app.py) en http://localhost:8501.
+- Detecta automaticamente Python o uv, descarga paquetes faltantes y abre 
+  el navegador.
+- Demuestra la arquitectura en capas con EpidemiologyDataService y 
+  EpidemiologyModelService.
+
+-------------------------------------------------------------------------------
+3. [3_EJECUTAR_PRUEBAS_UNITARIAS.bat] -> (SUITE DE PRUEBAS AUTOMATIZADAS)
+-------------------------------------------------------------------------------
+- Ejecuta las 6 pruebas unitarias formales (tests/test_services.py) validando:
+  * Integridad de los 24 años de series epidemiologicas.
+  * Cobertura de los 25 departamentos del Peru.
+  * Verificacion matematica de tasas por 100,000 habitantes.
+  * Consistencia de los KPIs.
+  * Metricas de modelos ML (XGBoost R2 > 0.90).
+  * Intervalos de confianza no invertidos (Upper CI >= Lower CI).
+
+-------------------------------------------------------------------------------
+ARCHIVOS ADICIONALES INCLUIDOS:
+-------------------------------------------------------------------------------
+- DASHBOARD_EXPLANATION.md: Guia explicativa y guion de exposicion de 2 minutos 
+  en ingles.
+- src/: Codigo fuente modular (services, data_preparation, eda, modeling).
+- data/: Datos procesados y series anuales 2000-2023.
+- outputs/: Tablas, figuras y metricas de modelos predictivos.
+- tests/: Suite de pruebas unitarias.
+===============================================================================

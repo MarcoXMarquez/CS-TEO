@@ -1,0 +1,3 @@
+Mi propuesta es que presentemos Quality Nexus como una plataforma de ingeniería de requisitos, evaluación de calidad y mejora continua del software, basada en estándares internacionales y adaptada a las restricciones reales de cada organización.
+La idea no es crear simplemente una herramienta que mida la calidad del código, ni otra IA que escriba requisitos. Queremos conectar todo el proceso: desde lo que el cliente necesita hasta la evidencia que demuestra si el software cumple lo acordado, considerando los recursos técnicos y económicos disponibles.
+Esto también permite darle una base académica sólida al proyecto: ingeniería de requisitos, modelos de calidad, métricas de software, pruebas, arquitectura, análisis de riesgos, automatización y viabilidad económica.

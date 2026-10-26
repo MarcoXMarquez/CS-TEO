@@ -1,0 +1,1230 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=chromium",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\playwright.config.js",
+    "rootDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/marco/Desktop/TEO-CS/codigo/tests_playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright",
+        "snapshotDir": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "headless": true,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "ignoreHTTPSErrors": true,
+          "screenshot": "on",
+          "trace": "on",
+          "video": "off",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests_ispysa\\ispysa.spec.js",
+      "file": "tests_ispysa/ispysa.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "ISPySA-Pneumonia - Especificación ISO 29119",
+          "file": "tests_ispysa/ispysa.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "T01 [R1] - Carga institucional y contexto por defecto en cohorte pediátrica (men5)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3897,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:14:58.317Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-dd4cd-en-cohorte-pediátrica-men5--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-dd4cd-en-cohorte-pediátrica-men5--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d263c8b6c7836db6de73",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "T02 [R1] - Transición interactiva a cohorte geriátrica (60mas) actualiza contexto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6200,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:02.464Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-879d6-ca-60mas-actualiza-contexto-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-879d6-ca-60mas-actualiza-contexto-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-8432bfe754eec40c6e51",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "T03 [R2] - Banner de alerta sanitaria canaliza estado según normativa Bortman OPS",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4544,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:08.862Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-0cd36-según-normativa-Bortman-OPS-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-0cd36-según-normativa-Bortman-OPS-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-ff87cb6f709ef8254da7",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "T04 [R2] - Pestaña I renderiza el Corredor Endémico de Bortman y tarjetas de cuartiles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4700,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:13.541Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-1dcf7-man-y-tarjetas-de-cuartiles-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-1dcf7-man-y-tarjetas-de-cuartiles-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-5f43bae47cd0297ccae3",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "T05 [R3] - Pestaña II despliega evolución de tasas de hospitalización y letalidad",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5153,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:18.507Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-9e7f8-hospitalización-y-letalidad-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-9e7f8-hospitalización-y-letalidad-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-def120f7da246473f3e5",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 76,
+              "column": 3
+            },
+            {
+              "title": "T06 [R3] - Monitor de Triaje Manchester calcula recursos críticos (UCI y Oxígeno)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6003,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:23.822Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-ded75-sos-críticos-UCI-y-Oxígeno--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-ded75-sos-críticos-UCI-y-Oxígeno--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-e024f816be798ab024c7",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "T07 [R4] - Pestaña III despliega persistencia departamental en el Top 3",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3888,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:30.112Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-c89cb-a-departamental-en-el-Top-3-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-c89cb-a-departamental-en-el-Top-3-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d78e551e1591867f5829",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 102,
+              "column": 3
+            },
+            {
+              "title": "T08 [R4] - Matriz Bioclimática estratifica departamentos por Heladas y Friaje",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3798,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:34.129Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-b81cb-mentos-por-Heladas-y-Friaje-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-b81cb-mentos-por-Heladas-y-Friaje-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-626983abcf2af3047390",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 112,
+              "column": 3
+            },
+            {
+              "title": "T09 [R5] - Consistencia aritmética en la Tasa de Hospitalización (HR)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4278,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:38.064Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-bf0c1-Tasa-de-Hospitalización-HR--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-bf0c1-Tasa-de-Hospitalización-HR--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-69fdc3f7b086ad9f0035",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "T10 [R5] - Consistencia aritmética en la Tasa de Letalidad (CFR)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4251,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:42.463Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-4556e-n-la-Tasa-de-Letalidad-CFR--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-4556e-n-la-Tasa-de-Letalidad-CFR--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-d5441be527eed5022cb5",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 143,
+              "column": 3
+            },
+            {
+              "title": "T11 [R6] - Pestaña IV despliega métricas de precisión ML y modelo óptimo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3955,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:46.892Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-987e2-recisión-ML-y-modelo-óptimo-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-987e2-recisión-ML-y-modelo-óptimo-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-523174fb2b9acb04f4f2",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "T12 [R6] - Pestaña V contiene matriz de cumplimiento ISO 9241 e ISO/IEC 25010",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4471,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:51.000Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-46f35-to-ISO-9241-e-ISO-IEC-25010-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_ispysa-ispysa-ISPySA-46f35-to-ISO-9241-e-ISO-IEC-25010-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "657ee15ca9f4ca44743d-3f826809cc18c978e947",
+              "file": "tests_ispysa/ispysa.spec.js",
+              "line": 172,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests_saucedemo\\saucedemo.spec.js",
+      "file": "tests_saucedemo/saucedemo.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "SauceDemo E-Commerce - Especificación ISO 29119",
+          "file": "tests_saucedemo/saucedemo.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "T01 [R1] - Autenticación exitosa con credenciales válidas estándar",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 773,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:55.685Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--3afbd-edenciales-válidas-estándar-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--3afbd-edenciales-válidas-estándar-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-a90abc41d42c8b6c60bb",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 18,
+              "column": 3
+            },
+            {
+              "title": "T02 [R1] - Bloqueo de acceso para usuario suspendido/locked_out",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 610,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:56.505Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--0c6f0-uario-suspendido-locked-out-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--0c6f0-uario-suspendido-locked-out-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-fbfba26714a8d98896b7",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 30,
+              "column": 3
+            },
+            {
+              "title": "T03 [R2] - Verificación de integridad estructural del catálogo (6 productos)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 693,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:57.142Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--b7252-l-del-catálogo-6-productos--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--b7252-l-del-catálogo-6-productos--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-e7b08d15b65a5a7b7f32",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "T04 [R2] - Navegación a la ficha de detalle de producto y retorno sin pérdida de estado",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 684,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:57.887Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--ca01f-torno-sin-pérdida-de-estado-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--ca01f-torno-sin-pérdida-de-estado-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-5701f18e47c08b227c89",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "T05 [R3] - Clasificación por precio ascendente satisface P[i] <= P[i+1]",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 663,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:58.617Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--79c7a-ndente-satisface-P-i-P-i-1--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--79c7a-ndente-satisface-P-i-P-i-1--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-870d29749907e4fbbee6",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "T06 [R3] - Clasificación por precio descendente satisface P[i] >= P[i+1]",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 679,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:15:59.331Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--3a7c7-ndente-satisface-P-i-P-i-1--chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--3a7c7-ndente-satisface-P-i-P-i-1--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-d7f64b0fb8a2db7ee2b5",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "T07 [R4] - Adición individual de ítem actualiza badge de carrito a 1 y conmuta botón",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 659,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:00.062Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--ea1cd-carrito-a-1-y-conmuta-botón-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--ea1cd-carrito-a-1-y-conmuta-botón-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-2dfb3519b672158ebc11",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 134,
+              "column": 3
+            },
+            {
+              "title": "T08 [R4] - Gestión compuesta: agregar múltiples ítems y supresión parcial reactiva",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 696,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:00.777Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--05ec7--supresión-parcial-reactiva-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--05ec7--supresión-parcial-reactiva-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-1f534b7e5f83f78e83ef",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "T09 [R5] - Validación obligatoria de campos vacíos en Checkout Step One",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 734,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:01.526Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--4f65d-vacíos-en-Checkout-Step-One-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--4f65d-vacíos-en-Checkout-Step-One-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-1836b37e453135635b95",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 172,
+              "column": 3
+            },
+            {
+              "title": "T10 [R5] - Despacho formal de datos válidos habilita transición a Checkout Step Two",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 856,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:02.315Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--d4b10-nsición-a-Checkout-Step-Two-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--d4b10-nsición-a-Checkout-Step-Two-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-c15179b5813d06cdb44f",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 190,
+              "column": 3
+            },
+            {
+              "title": "T11 [R6] - Consistencia aritmética en subtotal, impuesto (8%) y total neto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 920,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:03.225Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--27548-tal-impuesto-8-y-total-neto-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--27548-tal-impuesto-8-y-total-neto-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-f067b862f0887f7100b0",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 214,
+              "column": 3
+            },
+            {
+              "title": "T12 [R6] - Finalización satisfactoria de orden y cierre de sesión seguro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1843,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-20T02:16:04.204Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--eb496-n-y-cierre-de-sesión-seguro-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\marco\\Desktop\\TEO-CS\\codigo\\tests_playwright\\test-results\\tests_saucedemo-saucedemo--eb496-n-y-cierre-de-sesión-seguro-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "19ca11d95c5c7ddd3831-4e820bb45519042bcbaa",
+              "file": "tests_saucedemo/saucedemo.spec.js",
+              "line": 243,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T02:14:57.901Z",
+    "duration": 68397.686,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

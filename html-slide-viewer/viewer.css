@@ -1,0 +1,156 @@
+/* HTML Slide Viewer Pro - Stylesheet */
+
+:root {
+  --slide-width: 1920px;
+  --slide-height: 1080px;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 1);
+}
+
+/* Stage & Viewport */
+.slide-stage {
+  width: var(--slide-width);
+  height: var(--slide-height);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transition: transform 0.15s ease-out;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Fullscreen mode adjustments */
+:fullscreen #top-bar,
+:-webkit-full-screen #top-bar {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:fullscreen:hover #top-bar,
+:-webkit-full-screen:hover #top-bar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+:fullscreen #stage-wrapper,
+:-webkit-full-screen #stage-wrapper {
+  padding: 0 !important;
+  background-color: #000000 !important;
+}
+
+:fullscreen .slide-stage,
+:-webkit-full-screen .slide-stage {
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* Overview Grid Cards */
+.overview-card {
+  aspect-ratio: 16 / 9;
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overview-card:hover {
+  border-color: #34909D;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(52, 144, 157, 0.3);
+}
+
+.overview-card.active {
+  border-color: #BA0034;
+  box-shadow: 0 0 0 3px rgba(186, 0, 52, 0.3);
+}
+
+.overview-card iframe {
+  pointer-events: none;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  border: none;
+}
+
+/* Native Browser Print Optimization (Ctrl + P) */
+@media print {
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+  
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 1920px !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #top-bar,
+  #deck-progress-bar,
+  #overlay-prev,
+  #overlay-next,
+  #floating-bar,
+  #overview-modal,
+  #export-modal,
+  #dropzone-overlay {
+    display: none !important;
+  }
+
+  #stage-wrapper {
+    display: block !important;
+    width: 1920px !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .slide-stage {
+    position: static !important;
+    transform: none !important;
+    width: 1920px !important;
+    height: 1080px !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  #slide-frame {
+    width: 1920px !important;
+    height: 1080px !important;
+    display: block !important;
+  }
+}
